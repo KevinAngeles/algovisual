@@ -1,12 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const App = () => {
-  return (
-    <div>
-      AlgoVisual with react.
-    </div>
-  );
-};
+import Main from "./Components/Main";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(<Main />, document.getElementById('root'));
