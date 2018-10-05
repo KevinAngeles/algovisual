@@ -1,8 +1,8 @@
 {
   "name": "algovisual",
   "private": true,
-  "version": "0.1.0",
-  "description": "a Sails application",
+  "version": "0.2.0",
+  "description": "Application that allows to visualize algorithms.",
   "keywords": [],
   "dependencies": {
     "@babel/core": "^7.1.2",
@@ -31,6 +31,7 @@
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "postinstall": "npx webpack -p",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },
