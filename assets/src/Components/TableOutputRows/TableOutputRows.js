@@ -2,6 +2,18 @@
 import React, {Component} from "react";
 import helper from "./../utils/helper";
 
+function TableRow(props) {
+  return (
+    <tr>
+      <td>{props.row.name}</td>
+      <td>{props.row.burnTime}</td>
+      <td>{props.row.arriveTime}</td>
+      <td>{props.row.waitingTime}</td>
+      <td>{props.row.turnaroundTime}</td>
+    </tr>
+  );
+}
+
 class TableOutputRows extends Component {
   constructor(props) {
     super(props);
@@ -22,12 +34,18 @@ class TableOutputRows extends Component {
             <th>TurnAround Time</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {
+            this.props.rows.map((item,index) => {
+              return (<TableRow row={item} />);
+            })
+          }
+        </tbody>
         <tfoot>
           <tr>
             <th>Total</th>
             <th></th>
-            <th colspan="3"></th>
+            <th colspan="3">{helper.getTotalBurnTime(this.props.rows)}</th>
           </tr>
         </tfoot>
       </table>

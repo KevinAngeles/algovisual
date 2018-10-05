@@ -9,7 +9,7 @@ import TableOutputRows from "./TableOutputRows/TableOutputRows";
 import BarChart from "./BarChart/BarChart";
 
 // Helper Function
-import helpers from "./utils/helper";
+import helper from "./utils/helper";
 
 class Main extends Component {
   constructor(props) {
@@ -47,12 +47,25 @@ class Main extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // Update tableOutput if and only if tableInput was updated
+    // Note: The only way to update tableInput is by removing or adding rows. 
+    //    Therefore, in this case, comparing lengths is a safe way to 
+    //    determine table updates. 
+    if(this.state.tableInput.length !== prevState.tableInput.length) {
+      let deepCopyTableInput = JSON.parse(JSON.stringify(this.state.tableInput));
+      let updatedTableOutput = helper.getSJFOrderedElements(deepCopyTableInput);
+
+      this.setState({tableOutput: updatedTableOutput});
+    }
+  }
+
   handleRemoveButton(ev) {
     let idx = parseInt(ev.target.getAttribute('data-key'));
     this.setState( prevState => {
-      let updatedTableInput = [...prevState.tableInput];
-      updatedTableInput.splice(idx,1);
-      return {tableInput: updatedTableInput};
+      let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify(prevState.tableInput));
+      deepCopyUpdatedTableInput.splice(idx,1);
+      return {tableInput: deepCopyUpdatedTableInput};
     });
   }
 
@@ -62,8 +75,9 @@ class Main extends Component {
       let arriveTime = parseInt(prevState.arriveTime);
       let burnTime = parseInt(prevState.burnTime);
       let name = prevState.name;
-      let updatedTableInput = [...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name}];
-      return {tableInput: updatedTableInput};
+      let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify([...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name}]));
+
+      return {tableInput: deepCopyUpdatedTableInput};
     });
   }
 
