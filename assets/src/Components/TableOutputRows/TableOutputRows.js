@@ -1,6 +1,6 @@
 // Include React
 import React, {Component} from "react";
-import helpers from "./../utils/helpers";
+import helper from "./../utils/helper";
 
 class TableOutputRows extends Component {
   constructor(props) {
@@ -9,10 +9,10 @@ class TableOutputRows extends Component {
 
   render() {
     return(
-      <table id="tableOutput" className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0" cellpadding="6" rules="groups" frame="box">
+      <table id="tableOutput">
         <thead>
           <tr>
-            <th align="center" colspan="5">Output</th>
+            <th colspan="5">Output</th>
           </tr>
           <tr>
             <th>Name</th>
@@ -25,7 +25,7 @@ class TableOutputRows extends Component {
         <tbody></tbody>
         <tfoot>
           <tr>
-            <th align="left">Total</th>
+            <th>Total</th>
             <th></th>
             <th colspan="3"></th>
           </tr>

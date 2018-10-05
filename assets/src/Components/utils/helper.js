@@ -1,4 +1,4 @@
-const helpers = {
+const helper = {
   getTotalBurnTime : (rows) => {
     let total = 0;
     rows.forEach( (row, idx) => {
@@ -8,4 +8,4 @@ const helpers = {
   }
 }
 
-export default helpers;
+export default helper;

@@ -6,33 +6,53 @@ import JumboTron from "./JumboTron/JumboTron";
 import NavBar from "./NavBar/NavBar";
 import TableInputRows from "./TableInputRows/TableInputRows";
 import TableOutputRows from "./TableOutputRows/TableOutputRows";
+import BarChart from "./BarChart/BarChart";
 
 // Helper Function
-import helpers from "./utils/helpers";
+import helpers from "./utils/helper";
 
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.handleClickButton = this.handleClickButton.bind(this);
+    this.handleRemoveButton = this.handleRemoveButton.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeArriveTime = this.handleChangeArriveTime.bind(this);
     this.handleChangeBurnTime = this.handleChangeBurnTime.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+    
+    const graphMargin =  {
+      top: 60,
+      right: 30,
+      bottom: 60,
+      left: 30
+    };
+    const graphWidth = (600 - graphMargin.left - graphMargin.right);
+    const graphHeight = (300 - graphMargin.top - graphMargin.bottom);
+    const barPadding = 0.05;
+    const barOuterPad = 0.2;
+    
     this.state = {
       arriveTime: "",
       burnTime: "",
       name: "",
-      table: []
+      tableInput: [],
+      tableOutput: [],
+      graph: {
+        margin: graphMargin,
+        width: graphWidth,
+        height: graphHeight,
+        barPadding: barPadding,
+        barOuterPad: barOuterPad
+      }
     };
   }
 
-  handleClickButton(ev) {
+  handleRemoveButton(ev) {
     let idx = parseInt(ev.target.getAttribute('data-key'));
     this.setState( prevState => {
-      let updatedTable = [...prevState.table];
-      updatedTable.splice(idx,1);
-      return {table: updatedTable};
+      let updatedTableInput = [...prevState.tableInput];
+      updatedTableInput.splice(idx,1);
+      return {tableInput: updatedTableInput};
     });
   }
 
@@ -42,8 +62,8 @@ class Main extends Component {
       let arriveTime = parseInt(prevState.arriveTime);
       let burnTime = parseInt(prevState.burnTime);
       let name = prevState.name;
-      let updatedTable = [...prevState.table,{arriveTime:arriveTime,burnTime:burnTime,name:name}];
-      return {table: updatedTable};
+      let updatedTableInput = [...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name}];
+      return {tableInput: updatedTableInput};
     });
   }
 
@@ -74,8 +94,8 @@ class Main extends Component {
         {/*<!-- Main component for a primary marketing message or call to action -->*/}
         <JumboTron />
 
-        <div className="container-form">
-          <div id="formContainer" className="row-fluid">
+        <div>
+          <div id="formContainer">
             <h2>Instructions:</h2>
             <ul>
               <li>Fill the form with the name of the process, arrive time, burn time and click on "Add."</li>
@@ -94,13 +114,22 @@ class Main extends Component {
               handleSubmit={this.handleSubmit}
             />
           </div>
-          <div className="row-fluid tables">
-            <TableInputRows rows={this.state.table} handleClickButton={this.handleClickButton}/>
-            <TableOutputRows rows={this.state.table} handleClickButton={this.handleClickButton}/>
+          <div>
+            <TableInputRows rows={this.state.tableInput} handleRemoveButton={this.handleRemoveButton}/>
+            <TableOutputRows rows={this.state.tableOutput}/>
           </div>
         </div>
         <div>
-          <div id="graph"></div>
+          <div id="graph">
+            <BarChart
+              tableInput={this.state.tableInput}
+              margin={this.state.graph.margin}
+              width={this.state.graph.width} 
+              height={this.state.graph.height}
+              barPadding={this.state.graph.barPadding}
+              barOuterPad={this.state.graph.barOuterPad}
+            />
+          </div>
         </div>
       </div>
     );

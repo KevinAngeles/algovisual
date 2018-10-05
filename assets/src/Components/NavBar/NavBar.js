@@ -1,6 +1,5 @@
 // Include React
 import React, {Component} from "react";
-import helpers from "./../utils/helpers";
 
 class NavBar extends Component {
   constructor(props) {
