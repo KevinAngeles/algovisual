@@ -44,8 +44,8 @@ class TableOutputRows extends Component {
         <tfoot>
           <tr>
             <th>Total</th>
-            <th></th>
-            <th colspan="3">{helper.getTotalBurnTime(this.props.rows)}</th>
+            <th>{helper.getTotalBurnTime(this.props.rows)}</th>
+            <th colspan="3"></th>
           </tr>
         </tfoot>
       </table>
