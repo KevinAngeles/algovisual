@@ -1,6 +1,7 @@
 // Include React
 import React, {Component} from "react";
 import helper from "./../utils/helper";
+import {Jumbotron} from "reactstrap";
 
 class JumboTron extends Component {
   constructor(props) {
@@ -9,14 +10,14 @@ class JumboTron extends Component {
 
   render() {
     return(
-      <div className="jumbotron">
+      <Jumbotron>
         <h1>SJF Algorithm</h1>
         <h2>Non-preemptive algorithm</h2>
         <p>This is a web page created to <a href="#">explain and illustrate</a> some common algorithms.</p>
         <p>
           <a className="btn btn-lg btn-primary" href="#" role="button">Go to explanation »</a>
         </p>
-      </div>
+      </Jumbotron>
     );
   }
 }

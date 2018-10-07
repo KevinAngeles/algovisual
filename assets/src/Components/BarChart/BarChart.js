@@ -12,7 +12,7 @@ class BarChart extends Component {
     let svgWidth = this.props.width + this.props.margin.left + this.props.margin.right;
     let svgHeight = this.props.height + this.props.margin.top + this.props.margin.bottom;
     return(
-      <svg ref={this.chartRef} shape-rendering="geometricPrecision" width={svgWidth} height={svgHeight}>
+      <svg ref={this.chartRef} shapeRendering="geometricPrecision" width={svgWidth} height={svgHeight}>
         <g transform="translate(30,60)">
           <g id="axis"></g>
           <g id="bars"></g>

@@ -21,10 +21,10 @@ class TableOutputRows extends Component {
 
   render() {
     return(
-      <table id="tableOutput">
+      <table id="tableOutput" className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
         <thead>
           <tr>
-            <th colspan="5">Output</th>
+            <th colSpan={5}>Output</th>
           </tr>
           <tr>
             <th>Name</th>
@@ -45,7 +45,7 @@ class TableOutputRows extends Component {
           <tr>
             <th>Total</th>
             <th>{helper.getTotalBurnTime(this.props.rows)}</th>
-            <th colspan="3"></th>
+            <th colSpan={3}></th>
           </tr>
         </tfoot>
       </table>

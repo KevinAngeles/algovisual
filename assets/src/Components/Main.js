@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Col,Container,Row} from 'reactstrap';
 
 // Import sub-components
 import FormInput from "./FormInput/FormInput";
@@ -18,7 +19,7 @@ class Main extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeArriveTime = this.handleChangeArriveTime.bind(this);
     this.handleChangeBurnTime = this.handleChangeBurnTime.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAddButton = this.handleAddButton.bind(this);
     
     const graphMargin =  {
       top: 60,
@@ -61,6 +62,7 @@ class Main extends Component {
   }
 
   handleRemoveButton(ev) {
+    ev.preventDefault();
     let idx = parseInt(ev.target.getAttribute('data-key'));
     this.setState( prevState => {
       let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify(prevState.tableInput));
@@ -69,7 +71,7 @@ class Main extends Component {
     });
   }
 
-  handleSubmit(ev) {
+  handleAddButton(ev) {
     ev.preventDefault();
     this.setState( prevState => {
       let arriveTime = parseInt(prevState.arriveTime);
@@ -101,14 +103,14 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         {/*<!-- Static navbar -->*/}
         <NavBar />
 
         {/*<!-- Main component for a primary marketing message or call to action -->*/}
         <JumboTron />
 
-        <div>
+        <div className="container-form">
           <div id="formContainer">
             <h2>Instructions:</h2>
             <ul>
@@ -125,13 +127,13 @@ class Main extends Component {
               handleChangeArriveTime={this.handleChangeArriveTime}
               handleChangeBurnTime={this.handleChangeBurnTime}
               handleChangeName={this.handleChangeName}
-              handleSubmit={this.handleSubmit}
+              handleAddButton={this.handleAddButton}
             />
           </div>
-          <div>
+          <Row className="tables">
             <TableInputRows rows={this.state.tableInput} handleRemoveButton={this.handleRemoveButton}/>
             <TableOutputRows rows={this.state.tableOutput}/>
-          </div>
+          </Row>
         </div>
         <div>
           <div id="graph">
@@ -145,7 +147,7 @@ class Main extends Component {
             />
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

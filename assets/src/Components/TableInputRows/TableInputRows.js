@@ -20,10 +20,10 @@ class TableInputRows extends Component {
 
   render() {
     return (
-      <table id="tableInput">
+      <table id="tableInput" className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
         <thead>
           <tr>
-            <th colspan="4">Data</th>
+            <th colSpan={4}>Data</th>
           </tr>
           <tr>
             <th>Name</th>
@@ -43,7 +43,7 @@ class TableInputRows extends Component {
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="2">Total</th>
+            <th colSpan={2}>Total</th>
             <th>{helper.getTotalBurnTime(this.props.rows)}</th>
             <th></th>
           </tr>
