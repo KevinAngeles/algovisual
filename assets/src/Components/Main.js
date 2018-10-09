@@ -11,6 +11,7 @@ import BarChart from "./BarChart/BarChart";
 
 // Helper Function
 import helper from "./utils/helper";
+import graph from "./utils/graph.js";
 
 class Main extends Component {
   constructor(props) {
@@ -57,6 +58,10 @@ class Main extends Component {
       let deepCopyTableInput = JSON.parse(JSON.stringify(this.state.tableInput));
       let updatedTableOutput = helper.getSJFOrderedElements(deepCopyTableInput);
 
+      const barsHeight = 70;
+      const axisDomId = "axis";
+      // If there is not any data, clear Y axis, otherwise, draw Y axis.
+      (this.state.tableInput.length > 0) ? graph.drawYAxis(barsHeight,axisDomId):graph.removeEveryGfromAxis(axisDomId);
       this.setState({tableOutput: updatedTableOutput});
     }
   }
