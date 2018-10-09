@@ -130,7 +130,7 @@ class Main extends Component {
               handleAddButton={this.handleAddButton}
             />
           </div>
-          <Row className="tables">
+          <Row className="tables no-gutters">
             <TableInputRows rows={this.state.tableInput} handleRemoveButton={this.handleRemoveButton}/>
             <TableOutputRows rows={this.state.tableOutput}/>
           </Row>

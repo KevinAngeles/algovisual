@@ -21,7 +21,7 @@ class TableOutputRows extends Component {
 
   render() {
     return(
-      <table id="tableOutput" className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+      <table id="tableOutput" className="col-xs-10 xs-offset-1 col-sm-10 sm-offset-1 col-md-10 md-offset-1 col-lg-6">
         <thead>
           <tr>
             <th colSpan={5}>Output</th>

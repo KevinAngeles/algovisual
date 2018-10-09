@@ -1,0 +1,36 @@
+/* Button Colors */
+$primary:  darken(#428bca, 6.5%);
+$success:  #5cb85c;
+$info:     #5bc0de;
+$warning:  #f0ad4e;
+$danger:   #d9534f;
+
+$grid-gutter-width: 30px;
+
+/* Grid breakpoints
+**
+** Define the minimum dimensions at which your layout will change,
+** adapting to different screen sizes, for use in media queries.
+*/
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1900px
+);
+
+/* Grid containers
+**
+** Define the maximum width of `.container` for different screen sizes.
+*/
+$container-max-widths: (
+  sm: 540px,
+  md: (720px+$grid-gutter-width),
+  lg: (940px+$grid-gutter-width),
+  xl: (1140px+$grid-gutter-width),
+  xxl: (1140px+$grid-gutter-width)
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
