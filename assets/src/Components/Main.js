@@ -95,14 +95,17 @@ class Main extends Component {
   }
 
   handleChangeArriveTime(ev) {
+    const filteredInput = helper.filterNonNumericCharacters(ev.target.value);
+
     this.setState({
-      arriveTime: ev.target.value,
+      arriveTime: filteredInput,
     });
   }
 
   handleChangeBurnTime(ev) {
+    const filteredInput = helper.filterNonNumericCharacters(ev.target.value);
     this.setState({
-      burnTime: ev.target.value,
+      burnTime: filteredInput,
     });
   }
 

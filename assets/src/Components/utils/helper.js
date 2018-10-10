@@ -61,6 +61,21 @@ const helper = {
       return arr;
     }
   },
+  /** 
+   * Summary. Remove non-numeric characters from strings.
+   *
+   * Description. This function converts a string to array. Then, it removes
+   * any non-numeric character using a regex.
+   * Finally, it converts the array back to a string and returns it.
+   *
+   * @param {string}  key       string to be filtered.
+   * 
+   * @return {string}
+   */
+  filterNonNumericCharacters: key => {
+    const regexNumber = new RegExp('^[0-9]+$');// Accept only numbers
+    return key.split('').filter(c => regexNumber.test(c)).join('');
+  },
   getChangesIndex: (arr,key) => {
     let keys = [];
 
