@@ -20,6 +20,7 @@ class Main extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeArriveTime = this.handleChangeArriveTime.bind(this);
     this.handleChangeBurnTime = this.handleChangeBurnTime.bind(this);
+    this.handleClearButton = this.handleClearButton.bind(this);
     this.handleAddButton = this.handleAddButton.bind(this);
     
     const graphMargin =  {
@@ -88,6 +89,11 @@ class Main extends Component {
     });
   }
 
+  handleClearButton(ev) {
+    ev.preventDefault();
+    this.setState({arriveTime:"",burnTime: "",name: ""});
+  }
+
   handleChangeArriveTime(ev) {
     this.setState({
       arriveTime: ev.target.value,
@@ -129,10 +135,11 @@ class Main extends Component {
               arriveTime={this.state.arriveTime}
               burnTime={this.state.burnTime}
               name={this.state.name}
+              handleAddButton={this.handleAddButton}
               handleChangeArriveTime={this.handleChangeArriveTime}
               handleChangeBurnTime={this.handleChangeBurnTime}
               handleChangeName={this.handleChangeName}
-              handleAddButton={this.handleAddButton}
+              handleClearButton={this.handleClearButton}
             />
           </div>
           <Row className="tables no-gutters">
