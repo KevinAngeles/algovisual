@@ -1,5 +1,7 @@
 // Include React
 import React, {Component} from "react";
+import {Button} from 'reactstrap';
+
 import helper from "./../utils/helper";
 
 function TableRow(props) {
@@ -8,7 +10,7 @@ function TableRow(props) {
       <td>{props.row.name}</td>
       <td>{props.row.arriveTime}</td>
       <td>{props.row.burnTime}</td>
-      <td><button type="button" data-key={props.row.idx} onClick={props.handleRemoveButton}>Remove</button></td>
+      <td className="p-0"><Button id="clearAll" color="danger" data-key={props.row.idx} onClick={props.handleRemoveButton}>Remove</Button></td>
     </tr>
   );
 }
