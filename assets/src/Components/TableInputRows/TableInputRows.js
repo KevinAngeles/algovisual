@@ -36,7 +36,7 @@ class TableInputRows extends Component {
           {
             this.props.rows.map((item,index) => {
               item.idx = index;
-              return (<TableRow row={item}
+              return (<TableRow row={item} key={index}
                handleRemoveButton={this.props.handleRemoveButton} />);
             })
           }
