@@ -10,8 +10,9 @@ import TableOutputRows from "./TableOutputRows/TableOutputRows";
 import BarChart from "./BarChart/BarChart";
 
 // Helper Function
+import algorithm from "./utils/algorithm";
 import helper from "./utils/helper";
-import graph from "./utils/graph.js";
+import graph from "./utils/graph";
 
 class Main extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class Main extends Component {
     //    determine table updates. 
     if(this.state.tableInput.length !== prevState.tableInput.length) {
       let deepCopyTableInput = JSON.parse(JSON.stringify(this.state.tableInput));
-      let updatedTableOutput = helper.getSJFOrderedElements(deepCopyTableInput);
+      let updatedTableOutput = algorithm.getSJFOrderedElements(deepCopyTableInput);
 
       const barsHeight = 70;
       const axisDomId = "axis";
@@ -91,7 +92,7 @@ class Main extends Component {
 
   handleClearButton(ev) {
     ev.preventDefault();
-    this.setState({arriveTime:"",burnTime: "",name: ""});
+    this.setState({arriveTime: "",burnTime: "",name: ""});
   }
 
   handleChangeArriveTime(ev) {

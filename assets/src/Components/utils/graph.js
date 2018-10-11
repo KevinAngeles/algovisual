@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import helper from "./helper.js"
 
 const graph = {
 	drawYAxis: function(barsHeight,axisDomId="axis") {

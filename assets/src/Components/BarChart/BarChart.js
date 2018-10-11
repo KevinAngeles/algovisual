@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import * as d3 from "d3";
-import helper from "../utils/helper.js";
 
 class BarChart extends Component {
   constructor(props) {
