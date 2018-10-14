@@ -30,14 +30,15 @@ class Main extends Component {
       bottom: 60,
       left: 30
     };
-    const graphWidth = (600 - graphMargin.left - graphMargin.right);
-    const graphHeight = (300 - graphMargin.top - graphMargin.bottom);
+    const graphWidth = (600 - graphMargin.right);
+    const graphHeight = (300 - graphMargin.top);
     const barPadding = 0.05;
     const barOuterPad = 0.2;
     
     this.state = {
       arriveTime: "",
       burnTime: "",
+      lastUniqueId: 0,
       name: "",
       tableInput: [],
       tableOutput: [],
@@ -60,11 +61,19 @@ class Main extends Component {
       let deepCopyTableInput = JSON.parse(JSON.stringify(this.state.tableInput));
       let updatedTableOutput = algorithm.getSJFOrderedElements(deepCopyTableInput);
 
-      const barsHeight = 70;
-      const axisDomId = "axis";
-      // If there is not any data, clear Y axis, otherwise, draw Y axis.
-      (this.state.tableInput.length > 0) ? graph.drawYAxis(barsHeight,axisDomId):graph.removeEveryGfromAxis(axisDomId);
-      this.setState({tableOutput: updatedTableOutput});
+      const axisDomSelection = "#axis";
+      const axisYDomSelection = ".axis.y";
+      const barsDomSelection = "#bars";
+      const barHeight = 70;
+      const graphWidth = this.state.graph.width;
+      const graphHeight = this.state.graph.height;
+
+      this.setState({tableOutput: updatedTableOutput}, () => {
+        // If there is not any data, clear Y axis, otherwise, draw Y axis.
+        (this.state.tableInput.length > 0) ? graph.drawYAxis(barHeight,axisDomSelection):graph.removeAxis(axisYDomSelection);
+        // Draw bars
+        graph.drawBars(updatedTableOutput,graphWidth,graphHeight,barHeight,barsDomSelection);
+      });
     }
   }
 
@@ -84,9 +93,10 @@ class Main extends Component {
       let arriveTime = parseInt(prevState.arriveTime);
       let burnTime = parseInt(prevState.burnTime);
       let name = prevState.name;
-      let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify([...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name}]));
+      let uniqueId = prevState.lastUniqueId;
+      let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify([...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name,uniqueId:uniqueId}]));
 
-      return {tableInput: deepCopyUpdatedTableInput};
+      return {tableInput: deepCopyUpdatedTableInput,lastUniqueId: (uniqueId+1)};
     });
   }
 

@@ -37,7 +37,7 @@ class TableOutputRows extends Component {
         <tbody>
           {
             this.props.rows.map((item,index) => {
-              return (<TableRow row={item} key={index} />);
+              return (<TableRow row={item} key={item.uniqueId}/>);
             })
           }
         </tbody>
