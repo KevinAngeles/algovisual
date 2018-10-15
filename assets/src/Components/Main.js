@@ -63,14 +63,18 @@ class Main extends Component {
 
       const axisDomSelection = "#axis";
       const axisYDomSelection = ".axis.y";
+      const axisXDomSelection = ".axis.x";
       const barsDomSelection = "#bars";
       const barHeight = 70;
       const graphWidth = this.state.graph.width;
       const graphHeight = this.state.graph.height;
 
       this.setState({tableOutput: updatedTableOutput}, () => {
-        // If there is not any data, clear Y axis, otherwise, draw Y axis.
-        (this.state.tableInput.length > 0) ? graph.drawYAxis(barHeight,axisDomSelection):graph.removeAxis(axisYDomSelection);
+        // If there is no data, clear Y axis, otherwise, draw Y axis.
+        const dataEmpty = (updatedTableOutput.length === 0);
+        graph.drawYAxis(dataEmpty,barHeight,axisDomSelection);
+        // If there is no data, clear X axis, otherwise, draw X axis.
+        graph.drawXAxis(updatedTableOutput,graphWidth,barHeight,axisDomSelection);
         // Draw bars
         graph.drawBars(updatedTableOutput,graphWidth,graphHeight,barHeight,barsDomSelection);
       });

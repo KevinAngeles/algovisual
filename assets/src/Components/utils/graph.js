@@ -7,7 +7,7 @@ const graph = {
     const minimumX = (data.length>0)?data[0]["arriveTime"]:0;
     const maximumX = (data.length>0)?(data[(data.length - 1)]["arriveTime"] + data[(data.length - 1)]["turnaroundTime"]):svgHeight;
     const x = d3.scaleLinear()
-        .domain([minimumX, maximumX]).nice()
+        .domain([minimumX, maximumX])
         .range([0, svgWidth]);
     // Time for transitions in milliseconds
     const t = d3.transition().duration(500);
@@ -68,20 +68,51 @@ const graph = {
               return (x(newData.arriveTime + newData.turnaroundTime) - x(newData.arriveTime + newData.waitingTime));
             });
     }
-  },drawYAxis: function(barHeight,axisDomSelection="#axis") {
-		let axis = d3.select(axisDomSelection);
-    axis.append("g")
-        .attr("class","y axis")
-      .append("text")
-        .attr("y","-10")
-        .attr("x",barHeight*(-0.5))
-        .attr("transform","rotate(-90)")
-        .attr("style","text-anchor: middle; stroke: #a44015; font-size: 20px;")
-        .text("Process");
+  },drawXAxis: function(data,svgWidth,barHeight,axisDomSelection="#axis") {
+    let axis = d3.select(axisDomSelection);
+    // Remove axis X
+    axis.selectAll(".x.axis").remove();
+    if(data.length > 0) {
+      const tipMargin = 10;
+      const minimumX = data[0]["arriveTime"];
+      const maximumX = data[(data.length - 1)]["arriveTime"] + data[(data.length - 1)]["turnaroundTime"];
+      const x = d3.scaleLinear()
+          .domain([minimumX, maximumX])
+          .range([0, svgWidth]);
+      
+      // In JavaScript, "Set" keeps the insertion order
+      let setOfTicks = new Set();
+      // "Set" is a collection of unique elements so any duplicated element is omitted
+      data.map( (item,index) => {
+        setOfTicks.add(item.arriveTime + item.waitingTime);
+        setOfTicks.add(item.arriveTime + item.turnaroundTime);
+      });
+
+      const arrTicks = [...setOfTicks];
+      const xAxis = d3.axisBottom(x).tickValues(arrTicks).tickFormat(d3.format("d"));
+      
+      axis.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (barHeight+tipMargin) + ")")
+        .call(xAxis);
+    }
+  },drawYAxis: function(dataEmpty,barHeight,axisDomSelection="#axis") {
+    let axis = d3.select(axisDomSelection);
+    // Remove axis Y
+    axis.selectAll(".y.axis").remove();
+    if(dataEmpty !== true) {
+      axis.append("g")
+          .attr("class","y axis")
+        .append("text")
+          .attr("y","-10")
+          .attr("x",barHeight*(-0.5))
+          .attr("transform","rotate(-90)")
+          .attr("style","text-anchor: middle; stroke: #a44015; font-size: 20px;")
+          .text("Process");
+    }
   },removeAxis: function(axisDomSelection) {
       d3.selectAll(axisDomSelection).remove();
-  },
-  removeEveryGfromAxis: function(axisDomId="axis") {
+  },removeEveryGfromAxis: function(axisDomId="axis") {
     let axis = d3.select(`#${axisDomId}`);
     axis.selectAll("g").remove();
   }
