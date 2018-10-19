@@ -1,27 +1,47 @@
-# algovisual
+# Algovisual
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+This application allows users to visualize the output of an algorithm in bar charts.
 
-a [Sails v1](https://sailsjs.com) application
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Links
+### Prerequisites
 
-+ [Get started](https://sailsjs.com/get-started)
-+ [Sails framework documentation](https://sailsjs.com/documentation)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
+You are required to have installed the following software:
 
+* Node.js and NPM
 
-### Version info
+### Installing
 
-This app was originally generated on Wed Oct 03 2018 11:32:45 GMT-0500 (CDT) using Sails v1.0.2.
+**Install dependencies**
 
-<!-- Internally, Sails used [`sails-generate@1.15.28`](https://github.com/balderdashy/sails-generate/tree/v1.15.28/lib/core-generators/new). -->
+Go to the root of the project and run the following code:
+```
+npm install
+```
 
+## Deployment
 
+**Start the server**
+Go to the root of the project and run the following code:
 
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
+```
+npm run start
+```
 
+## Built With
+
+* [Sails](https://sailsjs.com) - Node.js framework.
+* [D3.js](https://d3js.org/) - A JavaScript library for manipulating documents based on data.
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Reactstrap](https://reactstrap.github.io/) - Library to use React Bootstrap 4 components.
+* [Webpack](https://webpack.js.org/) -  Module bundler that generates static assets.
+
+## Authors
+
+* **[Kevin Angeles](https://www.kevinangeles.com/)** - [algovisual](https://github.com/KevinAngeles/algovisual)
+
+## License
+
+This project is licensed under MIT - see the [LICENSE.md](LICENSE.md) file for details
