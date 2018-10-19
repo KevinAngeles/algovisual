@@ -1,11 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: ["@babel/polyfill", "./assets/src/index.js"],
+  entry: ['@babel/polyfill', './assets/src/index.js'],
   output: {
     path: path.resolve(__dirname, '.tmp/public'),
     filename: 'bundle.js'
@@ -20,14 +19,14 @@ module.exports = {
           options: {
             presets: [
               [
-                "@babel/preset-env",
+                '@babel/preset-env',
                 {
-                  "targets"    : '> 0.25%, not dead',
-                  "useBuiltIns": "entry"
+                  'targets'    : '> 0.25%, not dead',
+                  'useBuiltIns': 'entry'
                 }
               ],
               [
-                "@babel/preset-react"
+                '@babel/preset-react'
               ]
             ]
           }
@@ -37,8 +36,8 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
-            options: { minimize: true } 
+            loader: 'html-loader',
+            options: { minimize: true }
           }
         ]
       },
@@ -47,14 +46,14 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader", // translates CSS into CommonJS
+            loader: 'css-loader', // translates CSS into CommonJS
             options: {
               url: false,
               sourceMap: true
             }
           },
           {
-            loader: "sass-loader", // compiles Sass to CSS
+            loader: 'sass-loader', // compiles Sass to CSS
             options: {
               sourceMap: true
             }
@@ -65,17 +64,17 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./assets/src/index.html",
-      filename: "index.html"
+      template: './assets/src/index.html',
+      filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     })
   ],
   stats: {
     colors: true
   },
   devtool: 'source-map',
-  mode : devMode ? 'development' : 'production'
+  mode: devMode ? 'development' : 'production'
 };

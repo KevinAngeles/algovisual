@@ -1,6 +1,7 @@
 // Include React
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {Button,Col,Form,FormGroup,Label,Row} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class FormInput extends Component {
   constructor(props) {
@@ -51,5 +52,16 @@ class FormInput extends Component {
     );
   }
 }
+
+FormInput.propTypes = {
+  arriveTime: PropTypes.number,
+  burnTime: PropTypes.number,
+  name: PropTypes.string,
+  handleAddButton: PropTypes.function,
+  handleChangeArriveTime: PropTypes.function,
+  handleChangeBurnTime: PropTypes.function,
+  handleChangeName: PropTypes.function,
+  handleClearButton: PropTypes.function
+};
 
 export default FormInput;

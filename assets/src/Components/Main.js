@@ -1,18 +1,18 @@
-import React, {Component} from "react";
-import {Col,Container,Row} from 'reactstrap';
+import React, {Component} from 'react';
+import {Container,Row} from 'reactstrap';
 
 // Import sub-components
-import FormInput from "./FormInput/FormInput";
-import JumboTron from "./JumboTron/JumboTron";
-import NavBar from "./NavBar/NavBar";
-import TableInputRows from "./TableInputRows/TableInputRows";
-import TableOutputRows from "./TableOutputRows/TableOutputRows";
-import BarChart from "./BarChart/BarChart";
+import FormInput from './FormInput/FormInput';
+import JumboTron from './JumboTron/JumboTron';
+import NavBar from './NavBar/NavBar';
+import TableInputRows from './TableInputRows/TableInputRows';
+import TableOutputRows from './TableOutputRows/TableOutputRows';
+import BarChart from './BarChart/BarChart';
 
 // Helper Function
-import algorithm from "./utils/algorithm";
-import helper from "./utils/helper";
-import graph from "./utils/graph";
+import algorithm from './utils/algorithm';
+import helper from './utils/helper';
+import graph from './utils/graph';
 
 class Main extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Main extends Component {
     this.handleChangeBurnTime = this.handleChangeBurnTime.bind(this);
     this.handleClearButton = this.handleClearButton.bind(this);
     this.handleAddButton = this.handleAddButton.bind(this);
-    
+
     const graphMargin =  {
       top: 60,
       right: 30,
@@ -34,12 +34,12 @@ class Main extends Component {
     const graphHeight = (300 - graphMargin.top);
     const barPadding = 0.05;
     const barOuterPad = 0.2;
-    
+
     this.state = {
-      arriveTime: "",
-      burnTime: "",
+      arriveTime: '',
+      burnTime: '',
       lastUniqueId: 0,
-      name: "",
+      name: '',
       tableInput: [],
       tableOutput: [],
       graph: {
@@ -54,17 +54,15 @@ class Main extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     // Update tableOutput if and only if tableInput was updated
-    // Note: The only way to update tableInput is by removing or adding rows. 
-    //    Therefore, in this case, comparing lengths is a safe way to 
-    //    determine table updates. 
+    // Note: The only way to update tableInput is by removing or adding rows.
+    //    Therefore, in this case, comparing lengths is a safe way to
+    //    determine table updates.
     if(this.state.tableInput.length !== prevState.tableInput.length) {
       let deepCopyTableInput = JSON.parse(JSON.stringify(this.state.tableInput));
       let updatedTableOutput = algorithm.getSJFOrderedElements(deepCopyTableInput);
 
-      const axisDomSelection = "#axis";
-      const axisYDomSelection = ".axis.y";
-      const axisXDomSelection = ".axis.x";
-      const barsDomSelection = "#bars";
+      const axisDomSelection = '#axis';
+      const barsDomSelection = '#bars';
       const barHeight = 70;
       const graphWidth = this.state.graph.width;
       const graphHeight = this.state.graph.height;
@@ -106,7 +104,7 @@ class Main extends Component {
 
   handleClearButton(ev) {
     ev.preventDefault();
-    this.setState({arriveTime: "",burnTime: "",name: ""});
+    this.setState({arriveTime: '',burnTime: '',name: ''});
   }
 
   handleChangeArriveTime(ev) {
@@ -143,11 +141,11 @@ class Main extends Component {
           <div id="formContainer">
             <h2>Instructions:</h2>
             <ul>
-              <li>Fill the form with the name of the process, arrive time, burn time and click on "Add."</li>
+              <li>Fill the form with the name of the process, arrive time, burn time and click on {'Add.'}</li>
               <li>Repeat the same steps for each process.</li>
-              <li>Every time the button "Add" is clicked, the result will be reordered in the table "Output." Additionally, the graphic below the tables will be also uploaded.</li>
-              <li>In order to remove a single process, click on the button "Remove" in the desired row.</li>
-              <li>In order to remove all the processes, click on the button "Clear All" above the table.</li>
+              <li>Every time the button {'Add'} is clicked, the result will be reordered in the table {'Output.'} Additionally, the bar charts below the tables will also be updated.</li>
+              <li>In order to remove a single process, click on the button {'Remove'} in the desired row.</li>
+              <li>In order to remove all the processes, click on the button {'Clear All'} above the table.</li>
             </ul>
             <FormInput
               arriveTime={this.state.arriveTime}
@@ -170,7 +168,7 @@ class Main extends Component {
             <BarChart
               tableInput={this.state.tableInput}
               margin={this.state.graph.margin}
-              width={this.state.graph.width} 
+              width={this.state.graph.width}
               height={this.state.graph.height}
               barPadding={this.state.graph.barPadding}
               barOuterPad={this.state.graph.barOuterPad}

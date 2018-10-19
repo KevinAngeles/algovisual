@@ -1,7 +1,6 @@
 // Include React
-import React, {Component} from "react";
-import helper from "./../utils/helper";
-import {Jumbotron} from "reactstrap";
+import React, {Component} from 'react';
+import {Jumbotron} from 'reactstrap';
 
 class JumboTron extends Component {
   constructor(props) {

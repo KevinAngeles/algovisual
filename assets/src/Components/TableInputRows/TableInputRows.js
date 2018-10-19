@@ -1,8 +1,9 @@
 // Include React
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {Button} from 'reactstrap';
+import PropTypes from 'prop-types';
 
-import helper from "./../utils/helper";
+import helper from './../utils/helper';
 
 function TableRow(props) {
   return (
@@ -39,7 +40,7 @@ class TableInputRows extends Component {
             this.props.rows.map((item,index) => {
               item.idx = index;
               return (<TableRow row={item} key={index}
-               handleRemoveButton={this.props.handleRemoveButton} />);
+                handleRemoveButton={this.props.handleRemoveButton} />);
             })
           }
         </tbody>
@@ -54,5 +55,15 @@ class TableInputRows extends Component {
     );
   }
 }
+
+TableRow.propTypes = {
+  row: PropTypes.object,
+  handleRemoveButton: PropTypes.function
+};
+
+TableInputRows.propTypes = {
+  rows: PropTypes.array,
+  handleRemoveButton: PropTypes.function
+};
 
 export default TableInputRows;

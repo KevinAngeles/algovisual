@@ -1,5 +1,5 @@
 // Include React
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {
   Collapse,
   Navbar,
@@ -8,7 +8,7 @@ import {
   Nav,
   NavItem,
   NavLink,
- } from 'reactstrap';
+} from 'reactstrap';
 
 
 class NavBar extends Component {
@@ -19,13 +19,13 @@ class NavBar extends Component {
       isOpen: false
     };
   }
-  
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
-  
+
   render() {
     return(
       <Navbar color="light" light expand="md">

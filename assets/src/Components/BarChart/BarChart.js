@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class BarChart extends Component {
   constructor(props) {
@@ -20,5 +21,11 @@ class BarChart extends Component {
     );
   }
 }
+
+BarChart.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  margin: PropTypes.object
+};
 
 export default BarChart;

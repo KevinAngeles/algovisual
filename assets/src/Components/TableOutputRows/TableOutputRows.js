@@ -1,6 +1,7 @@
 // Include React
-import React, {Component} from "react";
-import helper from "./../utils/helper";
+import React, {Component} from 'react';
+import helper from './../utils/helper';
+import PropTypes from 'prop-types';
 
 function TableRow(props) {
   return (
@@ -36,7 +37,7 @@ class TableOutputRows extends Component {
         </thead>
         <tbody>
           {
-            this.props.rows.map((item,index) => {
+            this.props.rows.map( item => {
               return (<TableRow row={item} key={item.uniqueId}/>);
             })
           }
@@ -52,5 +53,13 @@ class TableOutputRows extends Component {
     );
   }
 }
+
+TableRow.propTypes = {
+  row: PropTypes.object
+};
+
+TableOutputRows.propTypes = {
+  rows: PropTypes.array
+};
 
 export default TableOutputRows;

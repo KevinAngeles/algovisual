@@ -1,5 +1,5 @@
 const algorithm = {
-  /** 
+  /**
    * Summary. Sort an array by key using the bubble algorithm.
    *
    * Description. Sort an array by key using the bubble algorithm. This function modifies
@@ -7,7 +7,7 @@ const algorithm = {
    *
    * @param {Array}   arr                Array to be sorted. Example: [{name:'first',arriveTime:1,burnTime:2}]
    * @param {string}  key                attribute used to sort the input Array.
-   * 
+   *
    * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2}]
    */
   bubbleSort: (arr, key) => {
@@ -25,33 +25,33 @@ const algorithm = {
     }
     return arr;
   },
-  /** 
+  /**
    * Summary. Sort an array by keys using the bubble algorithm.
    *
-   * Description. Sort by keys in ascending order using the bubble algorithm. 
+   * Description. Sort by keys in ascending order using the bubble algorithm.
    * The sorting depends on the order of the keys. The first key will take precendence
-   * over the second, the second over the third, etc. 
+   * over the second, the second over the third, etc.
    *
    * @param {Array}  arr                 Array of objects to be sorted. Example: [{name:'first',arriveTime:1,burnTime:2}]
    * @param {Array}  keys                Array of keys (String) used to sort the input Array in ascending order. Example: ["arriveTime","burnTime"]
-   * 
+   *
    * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2}]
    */
   bubbleSortMultiple: function(arr, keys) {
     if( arr.length > 1 )
     {
-      keys.reverse().forEach( (k,index) => {
+      keys.reverse().forEach( k => {
         this.bubbleSort(arr,k);
       });
     }
     return arr;
   },
-  /** 
+  /**
    * Summary. Sort an array using the Shortest Job First Non-preemptive algorithm.
    *
-   * Description. First, this function sorts in ascending order an array of processes by 
-   * arriveTime and BurnTime respectively using the quickSort algorithm. Then, it uses 
-   * the sorted array to calculate waitingTime and turnaraoundTime for each process. 
+   * Description. First, this function sorts in ascending order an array of processes by
+   * arriveTime and BurnTime respectively using the quickSort algorithm. Then, it uses
+   * the sorted array to calculate waitingTime and turnaraoundTime for each process.
    * Finally, it returns the sorted array including waitingTime and TurnaroundTime.
    *
    * @param {Array}   proc               Array to be sorted. Example: [{name:'first',arriveTime:1,burnTime:2}]
@@ -59,10 +59,10 @@ const algorithm = {
    * @param {string}  burnTime           string used for burnTime in the input Array.
    * @param {string}  waitingTime        string to be used for waitingTime in the output Array.
    * @param {string}  turnaroundTime     string to be used for turnaroundTime in the output Array.
-   * 
+   *
    * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2,waitingTime:0,turnAroundTime:2}]
    */
-  getSJFOrderedElements: function(proc, arriveTime = "arriveTime", burnTime = "burnTime", waitingTime = "waitingTime", turnaroundTime = "turnaroundTime") {
+  getSJFOrderedElements: function(proc, arriveTime = 'arriveTime', burnTime = 'burnTime', waitingTime = 'waitingTime', turnaroundTime = 'turnaroundTime') {
     let sjfArr = [];
     // Sort array by arriveTime, and burnTime in ascending order
     let processes = proc.sort( (first, second) => {
@@ -91,6 +91,6 @@ const algorithm = {
     }
     return sjfArr;
   }
-}
+};
 
 export default algorithm;
