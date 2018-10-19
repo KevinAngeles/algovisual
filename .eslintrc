@@ -81,6 +81,7 @@
       "ignoredNodes": ["ConditionalExpression"]
     }],
     "linebreak-style":              ["error", "unix"],
+    "no-console":                   0,
     "no-dupe-keys":                 ["error"],
     "no-duplicate-case":            ["error"],
     "no-extra-semi":                ["warn"],

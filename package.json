@@ -1,7 +1,7 @@
 {
   "name": "algovisual",
   "private": true,
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Application that allows to visualize algorithms.",
   "keywords": [],
   "dependencies": {
@@ -9,6 +9,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@sailshq/connect-redis": "^3.2.1",
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
@@ -44,18 +45,18 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "test": "npm run lint && npm run test-mocha && echo 'Done.'",
+    "test-mocha": "npx mocha tests/test.js --require @babel/register",
     "postinstall": "npx webpack -p && npx cpx 'assets/favicon.ico' '.tmp/public'",
-    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
+    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Kevin/algovisual.git"
+    "url": "https://github.com/KevinAngeles/algovisual.git"
   },
-  "author": "Kevin",
-  "license": "",
+  "author": "KevinAngeles",
+  "license": "MIT",
   "engines": {
     "node": ">=10.1"
   }
