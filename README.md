@@ -38,6 +38,11 @@ npm run start
 * [Reactstrap](https://reactstrap.github.io/) - Library to use React Bootstrap 4 components.
 * [Webpack](https://webpack.js.org/) -  Module bundler that generates static assets.
 
+## Tested With
+
+* [Mocha](https://mochajs.org/) -  JavaScript test framework for Node.js and the browser.
+* [Chai](https://www.chaijs.com/) - BDD / TDD assertion library for Node.js.
+
 ## Authors
 
 * **[Kevin Angeles](https://www.kevinangeles.com/)** - [algovisual](https://github.com/KevinAngeles/algovisual)

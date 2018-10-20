@@ -58,12 +58,12 @@ class TableInputRows extends Component {
 
 TableRow.propTypes = {
   row: PropTypes.object,
-  handleRemoveButton: PropTypes.function
+  handleRemoveButton: PropTypes.func
 };
 
 TableInputRows.propTypes = {
   rows: PropTypes.array,
-  handleRemoveButton: PropTypes.function
+  handleRemoveButton: PropTypes.func
 };
 
 export default TableInputRows;

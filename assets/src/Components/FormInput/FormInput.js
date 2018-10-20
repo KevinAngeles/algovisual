@@ -54,14 +54,14 @@ class FormInput extends Component {
 }
 
 FormInput.propTypes = {
-  arriveTime: PropTypes.number,
-  burnTime: PropTypes.number,
+  arriveTime: PropTypes.string,
+  burnTime: PropTypes.string,
   name: PropTypes.string,
-  handleAddButton: PropTypes.function,
-  handleChangeArriveTime: PropTypes.function,
-  handleChangeBurnTime: PropTypes.function,
-  handleChangeName: PropTypes.function,
-  handleClearButton: PropTypes.function
+  handleAddButton: PropTypes.func,
+  handleChangeArriveTime: PropTypes.func,
+  handleChangeBurnTime: PropTypes.func,
+  handleChangeName: PropTypes.func,
+  handleClearButton: PropTypes.func
 };
 
 export default FormInput;
