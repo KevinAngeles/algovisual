@@ -68,9 +68,9 @@ class Main extends Component {
       const graphHeight = this.state.graph.height;
 
       this.setState({tableOutput: updatedTableOutput}, () => {
+        const isDataEmpty = (updatedTableOutput.length === 0);
         // If there is no data, clear Y axis, otherwise, draw Y axis.
-        const dataEmpty = (updatedTableOutput.length === 0);
-        graph.drawYAxis(dataEmpty,barHeight,axisDomSelection);
+        graph.drawYAxis(isDataEmpty,barHeight,axisDomSelection);
         // If there is no data, clear X axis, otherwise, draw X axis.
         graph.drawXAxis(updatedTableOutput,graphWidth,barHeight,axisDomSelection);
         // Draw bars
