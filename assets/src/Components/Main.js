@@ -104,7 +104,7 @@ class Main extends Component {
 
   handleClearButton(ev) {
     ev.preventDefault();
-    this.setState({arriveTime: '',burnTime: '',name: ''});
+    this.setState({tableInput: []});
   }
 
   handleChangeArriveTime(ev) {

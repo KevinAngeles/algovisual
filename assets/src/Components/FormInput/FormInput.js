@@ -45,7 +45,7 @@ class FormInput extends Component {
         <Row form className="text-center mb-3">
           <Col sm={12}>
             <Button id="add" color="primary" className="mr-2" onClick={this.props.handleAddButton}>Add</Button>
-            <Button id="clearAll" color="primary" onClick={this.props.handleClearButton}>Clear</Button>
+            <Button id="clearAll" color="primary" onClick={this.props.handleClearButton}>Clear All</Button>
           </Col>
         </Row>
       </Form>
