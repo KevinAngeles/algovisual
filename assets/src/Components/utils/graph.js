@@ -9,10 +9,11 @@ const graph = {
    * to the selection and remove accordingly. Next, it add new bars and curlies(curly braces) to a '.bar' element
    * and updates and finally updates existing ones.
    *
-   * @param {Object}       uniqueDict        Dictionary(Object) with uniqueIds and new data.
-   * @param {D3selection}  updatedBars       D3 selection of the updated bars.
-   * @param {Number}       barHeight         Bar height.
-   * @param {Function}     xScale            Function that scales a domain using D3.
+   * @param {Array}                            data               Array of objects.
+   * @param {Number}                           svgWidth           SVG width.
+   * @param {Number}                           svgHeight          SVG height.
+   * @param {Number}                           barHeight          Bar height.
+   * @param {String} [barsDomSelection=#axis]  barsDomSelection   String to select #bars using D3.
    *
    * @return {String}
    *
@@ -66,6 +67,8 @@ const graph = {
 
       bar.append('rect')
           .attr('class', 'singleBar')
+          .on('mouseover', (d,i,node) => this.drawToolTip(d,i,node,x,dict))
+          .on('mouseout', (d,i,node) => this.removeToolTip(i,node))
         .transition(t)
           .attr('fill', d => (`rgb(0, 0, ${(color(d.burnTime) * 10)})`))
           .attr('x', d => {
@@ -80,7 +83,8 @@ const graph = {
 
       /*--- Update ---*/
       newBars.selectAll('.singleBar')
-          .transition(t)
+          .on('mouseover', (d,i,node) => this.drawToolTip(d,i,node,x,dict))
+        .transition(t)
             .attr('fill', d => {
               let newData = dict[d.uniqueId];
               return (`rgb(0, 0, ${(color(newData.burnTime) * 10)})`);
@@ -98,46 +102,6 @@ const graph = {
             });
       this.updateCurlies(dict,newBars,barHeight,x);
     }
-  },
-  /**
-   * Summary. Create Curlies.
-   *
-   * Description. Returns path string d for <path d='This string'>
-   * a curly brace between x1,y1 and x2,y2, w pixels wide
-   * and q factor, .5 is normal, higher q = more expressive bracket.
-   *
-   * @param {Number}     x1       Integer.
-   * @param {Number}     y1       Integer.
-   * @param {Number}     x2       Integer.
-   * @param {Number}     y2       Integer.
-   * @param {Number}     w        Decimal.
-   * @param {Number}     q        Integer.
-   *
-   */
-  makeCurlyBrace: function(x1,y1,x2,y2,w,q) {
-    //Calculate unit vector
-    var dx = x1 - x2;
-    var dy = y1 - y2;
-    var len = Math.sqrt(dx*dx + dy*dy);
-    dx = dx / len;
-    dy = dy / len;
-    //Calculate Control Points of path,
-    var qx1 = x1 + q*w*dy;
-    var qy1 = y1 - q*w*dx;
-    var qx2 = (x1 - .25*len*dx) + (1-q)*w*dy;
-    var qy2 = (y1 - .25*len*dy) - (1-q)*w*dx;
-    var tx1 = (x1 -  .5*len*dx) + w*dy;
-    var ty1 = (y1 -  .5*len*dy) - w*dx;
-    var qx3 = x2 + q*w*dy;
-    var qy3 = y2 - q*w*dx;
-    var qx4 = (x1 - .75*len*dx) + (1-q)*w*dy;
-    var qy4 = (y1 - .75*len*dy) - (1-q)*w*dx;
-    return ('M ' +  x1 + ' ' +  y1 +
-      ' Q ' + qx1 + ' ' + qy1 + ' ' + qx2 + ' ' + qy2 +
-      ' T ' + tx1 + ' ' + ty1 +
-      ' M ' +  x2 + ' ' +  y2 +
-      ' Q ' + qx3 + ' ' + qy3 + ' ' + qx4 + ' ' + qy4 +
-      ' T ' + tx1 + ' ' + ty1 );
   },
   /**
    * Summary. Draw Curlies.
@@ -180,6 +144,66 @@ const graph = {
       });
   },
   /**
+   * Summary. Draw ToolTip.
+   *
+   * Description. This function draws a ToolTip and associate it to a .singleBar. It
+   * uses node[i] to retrieve the .singleBar node. Then, it selects the parent .bar node
+   * and selects the child .hover node. Finally, it removes the .hover node.
+   *
+   * @param {Array}        d                 Array of objects.
+   * @param {Number}       i                 Integer representing an index.
+   * @param {D3selection}  node              D3 selection of a .singleBar node.
+   * @param {Function}     xScale            Function that scales a domain using D3.
+   * @param {Object}       uniqueDict        Dictionary(Object) with uniqueIds and new data.
+   *
+   */
+  drawToolTip: function(d,i,node,xScale,uniqueDict) {
+    const tipTool = { margin: 10, width: 70, height: 30 };
+    const triangle = { width: 10, height: tipTool.margin };
+    let lineData = [{'x': triangle.width * (-0.5), 'y': -triangle.height}, {'x': 0, 'y': 0},
+      {'x': triangle.width * (0.5), 'y': -triangle.height}, {'x': triangle.width * (-0.5), 'y': -triangle.height}];
+    // Function to draw lines (to make a triangle)
+    let lineFunction = d3.line()
+      .x(d => d.x)
+      .y(d => d.y)
+      .curve(d3.curveLinear);
+
+    let tip = d3.select(node[i].parentNode).append('g')
+      .attr('class', 'hover')
+      .attr('transform', d => {
+        let newData = uniqueDict[d.uniqueId];
+        let tipX = xScale(newData.arriveTime + newData.waitingTime + newData.burnTime * 0.5);
+        let tipY = 0;
+        return `translate(${tipX},${tipY})`;
+      });
+    /*===== Draw ToolTip =====*/
+    // Draw rectangle
+    tip.append('rect')
+      .attr('y', tipTool.height * (-1) - tipTool.margin)
+      .attr('x', tipTool.width * (-0.5))
+      .attr('rx', 5)
+      .attr('ry', 5)
+      .attr('height', tipTool.height)
+      .attr('width', tipTool.width)
+      .attr('stroke', '#a44015')
+      .attr('stroke-width', 2)
+      .attr('fill', 'rgb(191,87,0)');
+    // Draw triangle below rectangle
+    tip.append('path')
+      .attr('d', lineFunction(lineData))
+      .attr('stroke', '#a44015')
+      .attr('stroke-width', 1)
+      .attr('fill', '#a44015');
+    // Draw ToolTip text
+    tip.append('text')
+      .attr('y', tipTool.height * (-0.5) - tipTool.margin)
+      .attr('dominant-baseline', 'middle')
+      .attr('text-anchor', 'middle')
+      .attr('class', 'hover')
+      .attr('fill', 'white')
+      .text(`${d.name}`);
+  },
+  /**
    * Summary. Draw X Axis.
    *
    * Description. This function draws the X axis which includes ticks and numbers below them.
@@ -187,7 +211,7 @@ const graph = {
    * @param {Array}                            data               Array of objects.
    * @param {Number}                           svgWidth           Total width of SVG.
    * @param {Number}                           barHeight          Bar height.
-   * @param {String} [axisDomSelection=#axis]  axisDomSelection   Function that scales a domain using D3.
+   * @param {String} [axisDomSelection=#axis]  axisDomSelection   String to select #axis using D3.
    *
    */
   drawXAxis: function(data,svgWidth,barHeight,axisDomSelection='#axis') {
@@ -249,6 +273,60 @@ const graph = {
     /*--- Update ---*/
     axisY.select('g text')
         .attr('x',barHeight*(-0.5));
+  },
+  /**
+   * Summary. Create Curlies.
+   *
+   * Description. Returns path string d for <path d='This string'>
+   * a curly brace between x1,y1 and x2,y2, w pixels wide
+   * and q factor, .5 is normal, higher q = more expressive bracket.
+   *
+   * @param {Number}     x1       Integer.
+   * @param {Number}     y1       Integer.
+   * @param {Number}     x2       Integer.
+   * @param {Number}     y2       Integer.
+   * @param {Number}     w        Decimal.
+   * @param {Number}     q        Integer.
+   *
+   */
+  makeCurlyBrace: function(x1,y1,x2,y2,w,q) {
+    //Calculate unit vector
+    let dx = x1 - x2;
+    let dy = y1 - y2;
+    let len = Math.sqrt(dx*dx + dy*dy);
+    dx = dx / len;
+    dy = dy / len;
+    //Calculate Control Points of path,
+    let qx1 = x1 + q*w*dy;
+    let qy1 = y1 - q*w*dx;
+    let qx2 = (x1 - .25*len*dx) + (1-q)*w*dy;
+    let qy2 = (y1 - .25*len*dy) - (1-q)*w*dx;
+    let tx1 = (x1 -  .5*len*dx) + w*dy;
+    let ty1 = (y1 -  .5*len*dy) - w*dx;
+    let qx3 = x2 + q*w*dy;
+    let qy3 = y2 - q*w*dx;
+    let qx4 = (x1 - .75*len*dx) + (1-q)*w*dy;
+    let qy4 = (y1 - .75*len*dy) - (1-q)*w*dx;
+    return ('M ' +  x1 + ' ' +  y1 +
+      ' Q ' + qx1 + ' ' + qy1 + ' ' + qx2 + ' ' + qy2 +
+      ' T ' + tx1 + ' ' + ty1 +
+      ' M ' +  x2 + ' ' +  y2 +
+      ' Q ' + qx3 + ' ' + qy3 + ' ' + qx4 + ' ' + qy4 +
+      ' T ' + tx1 + ' ' + ty1 );
+  },
+  /**
+   * Summary. Remove ToolTip.
+   *
+   * Description. This function remove tooltips associated to bars. It
+   * uses node[i] to retrieve the .singleBar node. Then, it selects the parent .bar node
+   * and selects the child .hover node. Finally, it removes the .hover node.
+   *
+   * @param {Number}       i                 Integer representing an index.
+   * @param {D3selection}  node              D3 selection of a .singleBar node.
+   *
+   */
+  removeToolTip: (i,node) => {
+    d3.select(node[i].parentNode).select('g.hover').remove();
   },
   /**
    * Summary. Update Curlies.
