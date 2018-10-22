@@ -1,5 +1,6 @@
 # Algovisual
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 This application allows users to visualize the output of an algorithm in bar charts.
 
 ## Getting Started
