@@ -1,6 +1,6 @@
 // Include React
 import React, {Component} from 'react';
-import {Button,Col,Form,FormGroup,Label,Row} from 'reactstrap';
+import {Button,Col,Form,FormFeedback,FormGroup,Input,Label,Row} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class FormInput extends Component {
@@ -17,7 +17,15 @@ class FormInput extends Component {
             <Row>
               <Label for="name" sm={6}>Name:</Label>
               <Col sm={6}>
-                <input id="name" type="text" value={this.props.name} onChange={this.props.handleChangeName} placeholder="Name"/>
+                <Input
+                  id="name"
+                  type="text"
+                  value={this.props.name}
+                  onChange={this.props.handleChangeName}
+                  placeholder="Name"
+                  invalid={this.props.errors.name.invalid}
+                />
+                <FormFeedback>Name cannot be empty.</FormFeedback>
               </Col>
             </Row>
           </Col>
@@ -27,7 +35,15 @@ class FormInput extends Component {
             <Row>
               <Label for="arrive" sm={6}>ArriveTime:</Label>
               <Col sm={6}>
-                <input id="arrive" type="text" value={this.props.arriveTime} onChange={this.props.handleChangeArriveTime} placeholder="0"/>
+                <Input
+                  id="arrive"
+                  type="text"
+                  value={this.props.arriveTime}
+                  onChange={this.props.handleChangeArriveTime}
+                  placeholder="0"
+                  invalid={this.props.errors.arriveTime.invalid}
+                />
+                <FormFeedback>Arrive time cannot be empty.</FormFeedback>
               </Col>
             </Row>
           </Col>
@@ -37,7 +53,15 @@ class FormInput extends Component {
             <Row>
               <Label for="burn" sm={6}>BurnTime:</Label>
               <Col sm={6}>
-                <input id="burn" type="text" value={this.props.burnTime} onChange={this.props.handleChangeBurnTime} placeholder="0"/>
+                <Input
+                  id="burn"
+                  type="text"
+                  value={this.props.burnTime}
+                  onChange={this.props.handleChangeBurnTime}
+                  placeholder="0"
+                  invalid={this.props.errors.burnTime.invalid}
+                />
+                <FormFeedback>Burn time cannot be empty.</FormFeedback>
               </Col>
             </Row>
           </Col>
@@ -57,6 +81,7 @@ FormInput.propTypes = {
   arriveTime: PropTypes.string,
   burnTime: PropTypes.string,
   name: PropTypes.string,
+  errors: PropTypes.object,
   handleAddButton: PropTypes.func,
   handleChangeArriveTime: PropTypes.func,
   handleChangeBurnTime: PropTypes.func,

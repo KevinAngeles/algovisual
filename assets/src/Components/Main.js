@@ -42,6 +42,19 @@ class Main extends Component {
       name: '',
       tableInput: [],
       tableOutput: [],
+      errors: {
+        input: {
+          name: {
+            invalid: false,
+          },
+          arriveTime: {
+            invalid: false,
+          },
+          burnTime: {
+            invalid: false,
+          }
+        },
+      },
       graph: {
         margin: graphMargin,
         width: graphWidth,
@@ -92,13 +105,38 @@ class Main extends Component {
   handleAddButton(ev) {
     ev.preventDefault();
     this.setState( prevState => {
-      let arriveTime = parseInt(prevState.arriveTime);
-      let burnTime = parseInt(prevState.burnTime);
+      let arriveTime = prevState.arriveTime;
+      let burnTime = prevState.burnTime;
       let name = prevState.name;
-      let uniqueId = prevState.lastUniqueId;
-      let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify([...prevState.tableInput,{arriveTime:arriveTime,burnTime:burnTime,name:name,uniqueId:uniqueId}]));
+      let errorExists = false;
+      let errors = JSON.parse(JSON.stringify(prevState.errors));
 
-      return {tableInput: deepCopyUpdatedTableInput,lastUniqueId: (uniqueId+1)};
+      if (name.trim().length === 0) {
+        errorExists = true;
+        errors.input.name.invalid = true;
+      }
+      if (arriveTime.trim().length === 0) {
+        errorExists = true;
+        errors.input.arriveTime.invalid = true;
+      }
+      if (burnTime.trim().length === 0) {
+        errorExists = true;
+        errors.input.burnTime.invalid = true;
+      }
+
+      let newState = {};
+
+      if (errorExists) {
+        newState.errors = errors;
+      }
+      else {
+        let uniqueId = prevState.lastUniqueId + 1;
+        newState.lastUniqueId = uniqueId;
+        let deepCopyUpdatedTableInput = JSON.parse(JSON.stringify([...prevState.tableInput,{arriveTime:parseInt(arriveTime),burnTime:parseInt(burnTime),name:name,uniqueId:uniqueId}]));
+        newState.tableInput = deepCopyUpdatedTableInput;
+      }
+
+      return newState;
     });
   }
 
@@ -110,21 +148,66 @@ class Main extends Component {
   handleChangeArriveTime(ev) {
     const filteredInput = helper.filterNonNumericCharacters(ev.target.value);
 
-    this.setState({
-      arriveTime: filteredInput,
+    this.setState( prevState => {
+      let newState = {arriveTime: filteredInput};
+      // If arriveTime was empty before, and now there is at least one character
+      // clear any previous arriveTime error
+      if (prevState.arriveTime.length === 0 && filteredInput.length > 0) {
+        let inputArriveTimeError = {
+          arriveTime: {
+            type: 'invalid',
+            value: false,
+          }
+        };
+        let inputErrors = Object.assign({},prevState.errors.input,inputArriveTimeError);
+        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
+        newState['errors'] = errors;
+      }
+      return newState;
     });
   }
 
   handleChangeBurnTime(ev) {
     const filteredInput = helper.filterNonNumericCharacters(ev.target.value);
-    this.setState({
-      burnTime: filteredInput,
+
+    this.setState( prevState => {
+      let newState = {burnTime: filteredInput};
+      // If burnTime was empty before, and now there is at least one character
+      // clear any previous burnTime error
+      if (prevState.burnTime.length === 0 && filteredInput.length > 0) {
+        let inputBurnTimeError = {
+          burnTime: {
+            type: 'invalid',
+            value: false,
+          }
+        };
+        let inputErrors = Object.assign({},prevState.errors.input,inputBurnTimeError);
+        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
+        newState['errors'] = errors;
+      }
+      return newState;
     });
   }
 
   handleChangeName(ev) {
-    this.setState({
-      name: ev.target.value,
+    let nameVal = ev.target.value;
+    this.setState( prevState => {
+      // Update input name
+      let newState = {name: nameVal};
+      // If name was empty before, and now there is at least one non-blank character
+      // clear any previous name error
+      if (prevState.name.length === 0 && nameVal.length > 0) {
+        let inputNameError = {
+          name: {
+            type: 'invalid',
+            value: false,
+          }
+        };
+        let inputErrors = Object.assign({},prevState.errors.input,inputNameError);
+        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
+        newState['errors'] = errors;
+      }
+      return newState;
     });
   }
 
@@ -151,6 +234,7 @@ class Main extends Component {
               arriveTime={this.state.arriveTime}
               burnTime={this.state.burnTime}
               name={this.state.name}
+              errors={this.state.errors.input}
               handleAddButton={this.handleAddButton}
               handleChangeArriveTime={this.handleChangeArriveTime}
               handleChangeBurnTime={this.handleChangeBurnTime}
