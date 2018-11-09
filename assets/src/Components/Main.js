@@ -43,17 +43,9 @@ class Main extends Component {
       tableInput: [],
       tableOutput: [],
       errors: {
-        input: {
-          name: {
-            invalid: false,
-          },
-          arriveTime: {
-            invalid: false,
-          },
-          burnTime: {
-            invalid: false,
-          }
-        },
+        inputNameInvalid: false,
+        inputArriveTimeInvalid: false,
+        inputBurnTimeInvalid: false,
       },
       graph: {
         margin: graphMargin,
@@ -113,15 +105,15 @@ class Main extends Component {
 
       if (name.trim().length === 0) {
         errorExists = true;
-        errors.input.name.invalid = true;
+        errors.inputNameInvalid = true;
       }
       if (arriveTime.trim().length === 0) {
         errorExists = true;
-        errors.input.arriveTime.invalid = true;
+        errors.inputArriveTimeInvalid = true;
       }
       if (burnTime.trim().length === 0) {
         errorExists = true;
-        errors.input.burnTime.invalid = true;
+        errors.inputBurnTimeInvalid = true;
       }
 
       let newState = {};
@@ -153,15 +145,9 @@ class Main extends Component {
       // If arriveTime was empty before, and now there is at least one character
       // clear any previous arriveTime error
       if (prevState.arriveTime.length === 0 && filteredInput.length > 0) {
-        let inputArriveTimeError = {
-          arriveTime: {
-            type: 'invalid',
-            value: false,
-          }
-        };
-        let inputErrors = Object.assign({},prevState.errors.input,inputArriveTimeError);
-        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
-        newState['errors'] = errors;
+        let inputArriveTimeError = { inputArriveTimeInvalid: false };
+        let updatedErrors = Object.assign({},prevState.errors,inputArriveTimeError);
+        newState['errors'] = updatedErrors;
       }
       return newState;
     });
@@ -171,19 +157,13 @@ class Main extends Component {
     const filteredInput = helper.filterNonNumericCharacters(ev.target.value);
 
     this.setState( prevState => {
-      let newState = {burnTime: filteredInput};
+      let newState = { burnTime: filteredInput };
       // If burnTime was empty before, and now there is at least one character
       // clear any previous burnTime error
       if (prevState.burnTime.length === 0 && filteredInput.length > 0) {
-        let inputBurnTimeError = {
-          burnTime: {
-            type: 'invalid',
-            value: false,
-          }
-        };
-        let inputErrors = Object.assign({},prevState.errors.input,inputBurnTimeError);
-        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
-        newState['errors'] = errors;
+        let inputBurnTimeError = {inputBurnTimeInvalid: false};
+        let updatedErrors = Object.assign({},prevState.errors,inputBurnTimeError);
+        newState['errors'] = updatedErrors;
       }
       return newState;
     });
@@ -193,19 +173,13 @@ class Main extends Component {
     let nameVal = ev.target.value;
     this.setState( prevState => {
       // Update input name
-      let newState = {name: nameVal};
+      let newState = { name: nameVal };
       // If name was empty before, and now there is at least one non-blank character
       // clear any previous name error
       if (prevState.name.length === 0 && nameVal.length > 0) {
-        let inputNameError = {
-          name: {
-            type: 'invalid',
-            value: false,
-          }
-        };
-        let inputErrors = Object.assign({},prevState.errors.input,inputNameError);
-        let errors = JSON.parse(JSON.stringify(Object.assign({},prevState.errors,{input: inputErrors})));
-        newState['errors'] = errors;
+        let inputNameError = { inputNameInvalid: false };
+        let updatedErrors = Object.assign({},prevState.errors,inputNameError);
+        newState['errors'] = updatedErrors;
       }
       return newState;
     });
@@ -234,7 +208,7 @@ class Main extends Component {
               arriveTime={this.state.arriveTime}
               burnTime={this.state.burnTime}
               name={this.state.name}
-              errors={this.state.errors.input}
+              errors={this.state.errors}
               handleAddButton={this.handleAddButton}
               handleChangeArriveTime={this.handleChangeArriveTime}
               handleChangeBurnTime={this.handleChangeBurnTime}
