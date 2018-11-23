@@ -1,7 +1,7 @@
 {
   "name": "algovisual",
   "private": true,
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Application that allows to visualize algorithms.",
   "keywords": [],
   "dependencies": {
@@ -47,7 +47,7 @@
     "start": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run test-mocha && echo 'Done.'",
     "test-mocha": "npx mocha tests/test.js --require @babel/register",
-    "postinstall": "npx webpack -p && npx cpx 'assets/favicon.ico' '.tmp/public'",
+    "postinstall": "npx webpack -p && npx cpx 'assets/favicon.ico' '.tmp/public' && npx cpx '.tmp/public/**/**' './docs'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "fix-lint-errors": "eslint . --fix --max-warnings=0 --report-unused-disable-directives && echo 'Fixed.'"
   },
