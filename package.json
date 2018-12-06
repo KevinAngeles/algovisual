@@ -1,7 +1,7 @@
 {
   "name": "algovisual",
   "private": true,
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Application that allows to visualize algorithms.",
   "keywords": [],
   "dependencies": {

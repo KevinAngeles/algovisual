@@ -42,6 +42,10 @@ class Main extends Component {
       name: '',
       tableInput: [],
       tableOutput: [],
+      algorithm: {
+        title: 'Shortest Job First (SJF)',
+        description: 'SJF is a scheduling algorithm that selects the waiting process with the smallest execution time to execute next. It is non-preemptive because once a process start it cannot be halted until it finishes its execution.'
+      },
       errors: {
         inputNameInvalid: false,
         inputArriveTimeInvalid: false,
@@ -192,7 +196,9 @@ class Main extends Component {
         <NavBar />
 
         {/*<!-- Main component for a primary marketing message or call to action -->*/}
-        <JumboTron />
+        <JumboTron 
+          algorithm={this.state.algorithm}
+        />
 
         <div className="container-form">
           <div id="formContainer">
@@ -209,6 +215,8 @@ class Main extends Component {
               burnTime={this.state.burnTime}
               name={this.state.name}
               errors={this.state.errors}
+              algoTitle={this.state.algorithm.title}
+              algodDesc={this.state.algorithm.description}
               handleAddButton={this.handleAddButton}
               handleChangeArriveTime={this.handleChangeArriveTime}
               handleChangeBurnTime={this.handleChangeBurnTime}

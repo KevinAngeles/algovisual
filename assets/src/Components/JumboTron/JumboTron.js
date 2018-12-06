@@ -1,10 +1,22 @@
 // Include React
 import React, {Component} from 'react';
-import {Jumbotron} from 'reactstrap';
+import {Button,Jumbotron} from 'reactstrap';
+import ModalDescription from '../ModalDescription';
 
 class JumboTron extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      modal: false,
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle(ev) {
+    ev.preventDefault();
+    this.setState({
+      modal: !this.state.modal
+    });
   }
 
   render() {
@@ -12,10 +24,16 @@ class JumboTron extends Component {
       <Jumbotron>
         <h1>SJF Algorithm</h1>
         <h2>Non-preemptive algorithm</h2>
-        <p>This is a web page created to <a href="#">explain and illustrate</a> some common algorithms.</p>
+        <p>This is a web page created to explain and illustrate some common algorithms.</p>
         <p>
-          <a className="btn btn-lg btn-primary" href="#" role="button">Go to explanation »</a>
+          <Button color='primary' size='lg' onClick={this.toggle}>Go to explanation »</Button>
         </p>
+        <ModalDescription
+          toggle={this.toggle}
+          modal={this.state.modal}
+          title={this.props.algorithm.title}
+          description={this.props.algorithm.description}
+        />
       </Jumbotron>
     );
   }
