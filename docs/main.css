@@ -6779,73 +6779,44 @@ h2 {
   margin-top: 20px; }
 
 table {
-  border-collapse: collapse;
-  border: 3px solid black;
-  margin: auto; }
+  box-sizing: border-box;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: auto;
+  text-align: center; }
+  table td, table th {
+    height: 27px; }
   table thead {
-    border-collapse: collapse;
-    border: 2px solid black; }
+    border-collapse: collapse; }
     table thead tr {
       border: 1px solid black; }
-      table thead tr th:nth-child(1) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
-        min-width: 50px; }
-      table thead tr th:nth-child(2) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
-        min-width: 55px; }
-      table thead tr th:nth-child(3) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
-        min-width: 50px; }
+      table thead tr th {
+        border: 1px solid black; }
+        table thead tr th:nth-child(1) {
+          min-width: 50px; }
+        table thead tr th:nth-child(2) {
+          min-width: 55px; }
+        table thead tr th:nth-child(3) {
+          min-width: 50px; }
       table thead tr th:nth-child(4) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
         min-width: 75px; }
       table thead tr th:nth-child(5) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
         min-width: 75px; }
   table tbody {
-    border-collapse: collapse;
-    border: 2px solid black; }
+    border-collapse: collapse; }
     table tbody tr {
-      border-collapse: collapse;
       border: 1px solid black; }
       table tbody tr td {
-        border-collapse: collapse;
         border: 1px solid black;
-        height: 35px;
-        text-align: center; }
+        height: 35px; }
   table tfoot {
-    border-collapse: collapse;
-    border: 2px solid black; }
+    border-collapse: collapse; }
     table tfoot tr {
-      border-collapse: collapse;
-      border: 2px solid black; }
-      table tfoot tr th:nth-child(2) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center; }
-
-table, td, th {
-  border-collapse: collapse;
-  border: 1px solid #000; }
-
-table + table, table + table tr:first-child th, table + table tr:first-child td {
-  border-top: 0; }
-
-table > tbody {
-  background: #FFFFFF; }
-
-td, th {
-  height: 27px; }
+      border: 1px solid black; }
+      table tfoot tr th {
+        border: 1px solid black; }
+  table > tbody {
+    background: #FFFFFF; }
 
 nav {
   background-color: #BF5700 !important;

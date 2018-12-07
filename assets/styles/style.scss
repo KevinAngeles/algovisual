@@ -31,90 +31,62 @@ h2 {
 }
 
 table {
-  border-collapse: collapse;
-  border: 3px solid black;
+  box-sizing: border-box;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: auto;
+  text-align: center;
+
+  td, th {
+    height: 27px;
+  }
+
   thead {
     border-collapse: collapse;
-    border: 2px solid black;
     tr {
       border: 1px solid black;
-      th:nth-child(1) {
-        border-collapse: collapse;
+      th {
         border: 1px solid black;
-        text-align: center;
-        min-width: 50px;
-      }
-      th:nth-child(2) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
-        min-width: 55px;
-      }
-      th:nth-child(3) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
-        min-width: 50px;
+        &:nth-child(1) {
+          min-width: 50px;
+        }
+        &:nth-child(2) {
+          min-width: 55px;
+        }
+        &:nth-child(3) {
+          min-width: 50px;
+        }
       }
       th:nth-child(4) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
         min-width: 75px;
       }
       th:nth-child(5) {
-        border-collapse: collapse;
-        border: 1px solid black;
-        text-align: center;
         min-width: 75px;
       }
     }
   }
   tbody {
     border-collapse: collapse;
-    border: 2px solid black;
     tr {
-      border-collapse: collapse;
       border: 1px solid black;
       td {
-        border-collapse: collapse;
         border: 1px solid black;
         height: 35px;
-        text-align: center;
       }
     }
   }
   tfoot {
     border-collapse: collapse;
-    border: 2px solid black;
     tr {
-      border-collapse: collapse;
-      border: 2px solid black;
-      th:nth-child(2) {
-        border-collapse: collapse;
+      border: 1px solid black;
+      th {
         border: 1px solid black;
-        text-align: center;
       }
     }
   }
-}
-
-table, td, th {
-  border-collapse: collapse;
-  border: 1px solid #000;
-}
-
-table + table, table + table tr:first-child th, table + table tr:first-child td {
-  border-top: 0;
-}
-
-table > tbody {
-  background: #FFFFFF;
-}
-
-td, th {
-  height: 27px;
+  & > tbody {
+    background: #FFFFFF;    
+  }
 }
 
 nav {
