@@ -22,12 +22,9 @@ class JumboTron extends Component {
   render() {
     return(
       <Jumbotron>
-        <h1>SJF Algorithm</h1>
-        <h2>Non-preemptive algorithm</h2>
         <p>This is a web page created to explain and illustrate some common algorithms.</p>
-        <p>
-          <Button color='primary' size='lg' onClick={this.toggle}>Go to explanation »</Button>
-        </p>
+        <h2>SJF Algorithm</h2>
+        <Button color='primary' size='lg' onClick={this.toggle}>Go to explanation »</Button>
         <ModalDescription
           toggle={this.toggle}
           modal={this.state.modal}

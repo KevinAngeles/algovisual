@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/src/Components/BarChart/BarChart.js":
-/*!****************************************************!*\
-  !*** ./assets/src/Components/BarChart/BarChart.js ***!
-  \****************************************************/
+/***/ "./assets/js/Components/BarChart/BarChart.js":
+/*!***************************************************!*\
+  !*** ./assets/js/Components/BarChart/BarChart.js ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -169,10 +169,10 @@ BarChart.propTypes = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/FormInput/FormInput.js":
-/*!******************************************************!*\
-  !*** ./assets/src/Components/FormInput/FormInput.js ***!
-  \******************************************************/
+/***/ "./assets/js/Components/FormInput/FormInput.js":
+/*!*****************************************************!*\
+  !*** ./assets/js/Components/FormInput/FormInput.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -316,10 +316,10 @@ FormInput.propTypes = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/JumboTron/JumboTron.js":
-/*!******************************************************!*\
-  !*** ./assets/src/Components/JumboTron/JumboTron.js ***!
-  \******************************************************/
+/***/ "./assets/js/Components/JumboTron/JumboTron.js":
+/*!*****************************************************!*\
+  !*** ./assets/js/Components/JumboTron/JumboTron.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -328,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
-/* harmony import */ var _ModalDescription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ModalDescription */ "./assets/src/Components/ModalDescription/index.js");
+/* harmony import */ var _ModalDescription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ModalDescription */ "./assets/js/Components/ModalDescription/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -381,11 +381,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Jumbotron"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SJF Algorithm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Non-preemptive algorithm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a web page created to explain and illustrate some common algorithms."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Jumbotron"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a web page created to explain and illustrate some common algorithms."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "SJF Algorithm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
         color: "primary",
         size: "lg",
         onClick: this.toggle
-      }, "Go to explanation \xBB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalDescription__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, "Go to explanation \xBB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalDescription__WEBPACK_IMPORTED_MODULE_2__["default"], {
         toggle: this.toggle,
         modal: this.state.modal,
         title: this.props.algorithm.title,
@@ -401,10 +401,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./assets/src/Components/Main.js":
-/*!***************************************!*\
-  !*** ./assets/src/Components/Main.js ***!
-  \***************************************/
+/***/ "./assets/js/Components/Main.js":
+/*!**************************************!*\
+  !*** ./assets/js/Components/Main.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -413,15 +413,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
-/* harmony import */ var _FormInput_FormInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormInput/FormInput */ "./assets/src/Components/FormInput/FormInput.js");
-/* harmony import */ var _JumboTron_JumboTron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./JumboTron/JumboTron */ "./assets/src/Components/JumboTron/JumboTron.js");
-/* harmony import */ var _NavBar_NavBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NavBar/NavBar */ "./assets/src/Components/NavBar/NavBar.js");
-/* harmony import */ var _TableInputRows_TableInputRows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TableInputRows/TableInputRows */ "./assets/src/Components/TableInputRows/TableInputRows.js");
-/* harmony import */ var _TableOutputRows_TableOutputRows__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TableOutputRows/TableOutputRows */ "./assets/src/Components/TableOutputRows/TableOutputRows.js");
-/* harmony import */ var _BarChart_BarChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BarChart/BarChart */ "./assets/src/Components/BarChart/BarChart.js");
-/* harmony import */ var _utils_algorithm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/algorithm */ "./assets/src/Components/utils/algorithm.js");
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/helper */ "./assets/src/Components/utils/helper.js");
-/* harmony import */ var _utils_graph__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils/graph */ "./assets/src/Components/utils/graph.js");
+/* harmony import */ var _FormInput_FormInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormInput/FormInput */ "./assets/js/Components/FormInput/FormInput.js");
+/* harmony import */ var _JumboTron_JumboTron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./JumboTron/JumboTron */ "./assets/js/Components/JumboTron/JumboTron.js");
+/* harmony import */ var _NavBar_NavBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NavBar/NavBar */ "./assets/js/Components/NavBar/NavBar.js");
+/* harmony import */ var _TableInputRows_TableInputRows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TableInputRows/TableInputRows */ "./assets/js/Components/TableInputRows/TableInputRows.js");
+/* harmony import */ var _TableOutputRows_TableOutputRows__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TableOutputRows/TableOutputRows */ "./assets/js/Components/TableOutputRows/TableOutputRows.js");
+/* harmony import */ var _BarChart_BarChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BarChart/BarChart */ "./assets/js/Components/BarChart/BarChart.js");
+/* harmony import */ var _utils_algorithm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/algorithm */ "./assets/js/Components/utils/algorithm.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/helper */ "./assets/js/Components/utils/helper.js");
+/* harmony import */ var _utils_graph__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils/graph */ "./assets/js/Components/utils/graph.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -723,10 +723,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./assets/src/Components/ModalDescription/index.js":
-/*!*********************************************************!*\
-  !*** ./assets/src/Components/ModalDescription/index.js ***!
-  \*********************************************************/
+/***/ "./assets/js/Components/ModalDescription/index.js":
+/*!********************************************************!*\
+  !*** ./assets/js/Components/ModalDescription/index.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -799,10 +799,10 @@ ModalDescription.propTypes = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/NavBar/NavBar.js":
-/*!************************************************!*\
-  !*** ./assets/src/Components/NavBar/NavBar.js ***!
-  \************************************************/
+/***/ "./assets/js/Components/NavBar/NavBar.js":
+/*!***********************************************!*\
+  !*** ./assets/js/Components/NavBar/NavBar.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -866,18 +866,8 @@ function (_Component) {
         light: true,
         expand: "md"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavbarBrand"], {
-        href: "/"
-      }, "AlgoVisual"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavbarToggler"], {
-        onClick: this.toggle
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Collapse"], {
-        isOpen: this.state.isOpen,
-        navbar: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
-        className: "ml-auto",
-        navbar: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        href: "/"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Home"))))));
+        href: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "AlgoVisual")));
     }
   }]);
 
@@ -888,10 +878,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./assets/src/Components/TableInputRows/TableInputRows.js":
-/*!****************************************************************!*\
-  !*** ./assets/src/Components/TableInputRows/TableInputRows.js ***!
-  \****************************************************************/
+/***/ "./assets/js/Components/TableInputRows/TableInputRows.js":
+/*!***************************************************************!*\
+  !*** ./assets/js/Components/TableInputRows/TableInputRows.js ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -902,7 +892,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils/helper */ "./assets/src/Components/utils/helper.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils/helper */ "./assets/js/Components/utils/helper.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -987,10 +977,10 @@ TableInputRows.propTypes = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/TableOutputRows/TableOutputRows.js":
-/*!******************************************************************!*\
-  !*** ./assets/src/Components/TableOutputRows/TableOutputRows.js ***!
-  \******************************************************************/
+/***/ "./assets/js/Components/TableOutputRows/TableOutputRows.js":
+/*!*****************************************************************!*\
+  !*** ./assets/js/Components/TableOutputRows/TableOutputRows.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -998,7 +988,7 @@ TableInputRows.propTypes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/helper */ "./assets/src/Components/utils/helper.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/helper */ "./assets/js/Components/utils/helper.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1071,10 +1061,10 @@ TableOutputRows.propTypes = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/utils/algorithm.js":
-/*!**************************************************!*\
-  !*** ./assets/src/Components/utils/algorithm.js ***!
-  \**************************************************/
+/***/ "./assets/js/Components/utils/algorithm.js":
+/*!*************************************************!*\
+  !*** ./assets/js/Components/utils/algorithm.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1184,10 +1174,10 @@ var algorithm = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/utils/graph.js":
-/*!**********************************************!*\
-  !*** ./assets/src/Components/utils/graph.js ***!
-  \**********************************************/
+/***/ "./assets/js/Components/utils/graph.js":
+/*!*********************************************!*\
+  !*** ./assets/js/Components/utils/graph.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1556,10 +1546,10 @@ var graph = {
 
 /***/ }),
 
-/***/ "./assets/src/Components/utils/helper.js":
-/*!***********************************************!*\
-  !*** ./assets/src/Components/utils/helper.js ***!
-  \***********************************************/
+/***/ "./assets/js/Components/utils/helper.js":
+/*!**********************************************!*\
+  !*** ./assets/js/Components/utils/helper.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1608,10 +1598,10 @@ var helper = {
 
 /***/ }),
 
-/***/ "./assets/src/index.js":
-/*!*****************************!*\
-  !*** ./assets/src/index.js ***!
-  \*****************************/
+/***/ "./assets/js/index.js":
+/*!****************************!*\
+  !*** ./assets/js/index.js ***!
+  \****************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1621,7 +1611,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Components_Main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Main */ "./assets/src/Components/Main.js");
+/* harmony import */ var _Components_Main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Main */ "./assets/js/Components/Main.js");
 /* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/style.scss */ "./assets/styles/style.scss");
 /* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_style_scss__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -73218,14 +73208,14 @@ module.exports = g;
 /***/ }),
 
 /***/ 0:
-/*!***************************************************!*\
-  !*** multi @babel/polyfill ./assets/src/index.js ***!
-  \***************************************************/
+/*!**************************************************!*\
+  !*** multi @babel/polyfill ./assets/js/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! ./assets/src/index.js */"./assets/src/index.js");
+module.exports = __webpack_require__(/*! ./assets/js/index.js */"./assets/js/index.js");
 
 
 /***/ })

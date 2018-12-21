@@ -33,7 +33,6 @@ npm run start
 
 ## Built With
 
-* [Sails](https://sailsjs.com) - Node.js framework.
 * [D3.js](https://d3js.org/) - A JavaScript library for manipulating documents based on data.
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
 * [Reactstrap](https://reactstrap.github.io/) - Library to use React Bootstrap 4 components.

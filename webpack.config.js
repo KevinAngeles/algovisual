@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: ['@babel/polyfill', './assets/src/index.js'],
+  entry: ['@babel/polyfill', './assets/js/index.js'],
   output: {
-    path: path.resolve(__dirname, '.tmp/public'),
+    path: path.resolve(__dirname, './docs'),
     filename: 'bundle.js'
   },
   module: {
@@ -64,7 +64,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './assets/src/index.html',
+      template: './assets/templates/index.html',
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({

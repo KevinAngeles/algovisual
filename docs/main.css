@@ -6941,6 +6941,9 @@ nav {
       background-color: #a44015;
       background-color: #a44015 !important; }
 
+.navbar-brand {
+  height: 100%; }
+
 .singleBar {
   stroke-width: 3;
   stroke: black; }
