@@ -3,6 +3,12 @@
 
 This application allows users to visualize the output of an algorithm in bar charts.
 
+## DEMO
+
+[AlgoVisual Live Demo](https://kevinangeles.github.io/algovisual/)
+
+![AlgoVisual Live Demo](algovisual.gif)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
