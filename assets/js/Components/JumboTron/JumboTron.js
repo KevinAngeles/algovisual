@@ -1,6 +1,7 @@
 // Include React
 import React, {Component} from 'react';
 import {Button,Jumbotron} from 'reactstrap';
+import { Route } from 'react-router-dom';
 import ModalDescription from '../ModalDescription';
 
 class JumboTron extends Component {
@@ -22,7 +23,9 @@ class JumboTron extends Component {
   render() {
     return(
       <Jumbotron>
-        <p>This is a web page created to explain and illustrate some common algorithms.</p>
+        <Route path="/" render={() => (
+          <p>This is a web page created to explain and illustrate some common algorithms.</p>
+        )}/>
         <h2>SJF Algorithm</h2>
         <Button color='primary' size='lg' onClick={this.toggle}>Go to explanation »</Button>
         <ModalDescription

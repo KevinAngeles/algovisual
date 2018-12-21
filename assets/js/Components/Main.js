@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Container,Row} from 'reactstrap';
+import {HashRouter as Router} from 'react-router-dom';
 
 // Import sub-components
 import FormInput from './FormInput/FormInput';
@@ -191,57 +192,59 @@ class Main extends Component {
 
   render() {
     return (
-      <Container>
-        {/*<!-- Static navbar -->*/}
-        <NavBar />
+      <Router>
+        <Container>
+          {/*<!-- Static navbar -->*/}
+          <NavBar />
 
-        {/*<!-- Main component for a primary marketing message or call to action -->*/}
-        <JumboTron 
-          algorithm={this.state.algorithm}
-        />
+          {/*<!-- Main component for a primary marketing message or call to action -->*/}
+          <JumboTron 
+            algorithm={this.state.algorithm}
+          />
 
-        <div className="container-form">
-          <div id="formContainer">
-            <h2>Instructions:</h2>
-            <ul>
-              <li>Fill the form with the name of the process, arrive time, burn time and click on {'Add.'}</li>
-              <li>Repeat the same steps for each process.</li>
-              <li>Every time the button {'Add'} is clicked, the result will be reordered in the table {'Output.'} Additionally, the bar charts below the tables will also be updated.</li>
-              <li>In order to remove a single process, click on the button {'Remove'} in the desired row.</li>
-              <li>In order to remove all the processes, click on the button {'Clear All'} above the table.</li>
-            </ul>
-            <FormInput
-              arriveTime={this.state.arriveTime}
-              burnTime={this.state.burnTime}
-              name={this.state.name}
-              errors={this.state.errors}
-              algoTitle={this.state.algorithm.title}
-              algodDesc={this.state.algorithm.description}
-              handleAddButton={this.handleAddButton}
-              handleChangeArriveTime={this.handleChangeArriveTime}
-              handleChangeBurnTime={this.handleChangeBurnTime}
-              handleChangeName={this.handleChangeName}
-              handleClearButton={this.handleClearButton}
-            />
+          <div className="container-form">
+            <div id="formContainer">
+              <h2>Instructions:</h2>
+              <ul>
+                <li>Fill the form with the name of the process, arrive time, burn time and click on {'Add.'}</li>
+                <li>Repeat the same steps for each process.</li>
+                <li>Every time the button {'Add'} is clicked, the result will be reordered in the table {'Output.'} Additionally, the bar charts below the tables will also be updated.</li>
+                <li>In order to remove a single process, click on the button {'Remove'} in the desired row.</li>
+                <li>In order to remove all the processes, click on the button {'Clear All'} above the table.</li>
+              </ul>
+              <FormInput
+                arriveTime={this.state.arriveTime}
+                burnTime={this.state.burnTime}
+                name={this.state.name}
+                errors={this.state.errors}
+                algoTitle={this.state.algorithm.title}
+                algodDesc={this.state.algorithm.description}
+                handleAddButton={this.handleAddButton}
+                handleChangeArriveTime={this.handleChangeArriveTime}
+                handleChangeBurnTime={this.handleChangeBurnTime}
+                handleChangeName={this.handleChangeName}
+                handleClearButton={this.handleClearButton}
+              />
+            </div>
+            <Row className="tables no-gutters">
+              <TableInputRows rows={this.state.tableInput} handleRemoveButton={this.handleRemoveButton}/>
+              <TableOutputRows rows={this.state.tableOutput}/>
+            </Row>
           </div>
-          <Row className="tables no-gutters">
-            <TableInputRows rows={this.state.tableInput} handleRemoveButton={this.handleRemoveButton}/>
-            <TableOutputRows rows={this.state.tableOutput}/>
-          </Row>
-        </div>
-        <div>
-          <div id="graph">
-            <BarChart
-              tableInput={this.state.tableInput}
-              margin={this.state.graph.margin}
-              width={this.state.graph.width}
-              height={this.state.graph.height}
-              barPadding={this.state.graph.barPadding}
-              barOuterPad={this.state.graph.barOuterPad}
-            />
+          <div>
+            <div id="graph">
+              <BarChart
+                tableInput={this.state.tableInput}
+                margin={this.state.graph.margin}
+                width={this.state.graph.width}
+                height={this.state.graph.height}
+                barPadding={this.state.graph.barPadding}
+                barOuterPad={this.state.graph.barOuterPad}
+              />
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </Router>
     );
   }
 }

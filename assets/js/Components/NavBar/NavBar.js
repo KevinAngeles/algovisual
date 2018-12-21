@@ -1,5 +1,6 @@
 // Include React
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
@@ -24,7 +25,7 @@ class NavBar extends Component {
   render() {
     return(
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="#"><h1>AlgoVisual</h1></NavbarBrand>
+        <NavbarBrand tag= { Link } to="/"><h1>AlgoVisual</h1></NavbarBrand>
       </Navbar>
     );
   }
