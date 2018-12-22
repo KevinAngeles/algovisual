@@ -17,6 +17,8 @@
     "es6": true
   },
 
+  "parser": "babel-eslint",
+  
   "settings": {
     "react": {
       "pragma": "React",

@@ -1,7 +1,9 @@
 // Include React
-import React, {Component} from 'react';
-import {Button,Col,Form,FormFeedback,FormGroup,Input,Label,Row} from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Col, Form, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addProcess, removeAllProcesses, updateInputProcessName, updateInputArriveTime, updateInputBurnTime } from '../../actions';
 
 class FormInput extends Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class FormInput extends Component {
                   id="name"
                   type="text"
                   value={this.props.name}
-                  onChange={this.props.handleChangeName}
+                  onChange={ ev => this.props.updateInputProcessName(ev.target.value) }
                   placeholder="Name"
                   invalid={this.props.errors.inputNameInvalid}
                 />
@@ -39,7 +41,7 @@ class FormInput extends Component {
                   id="arrive"
                   type="text"
                   value={this.props.arriveTime}
-                  onChange={this.props.handleChangeArriveTime}
+                  onChange={ ev => this.props.updateInputArriveTime(ev.target.value) }
                   placeholder="0"
                   invalid={this.props.errors.inputArriveTimeInvalid}
                 />
@@ -57,7 +59,7 @@ class FormInput extends Component {
                   id="burn"
                   type="text"
                   value={this.props.burnTime}
-                  onChange={this.props.handleChangeBurnTime}
+                  onChange={ ev => this.props.updateInputBurnTime(ev.target.value) }
                   placeholder="0"
                   invalid={this.props.errors.inputBurnTimeInvalid}
                 />
@@ -68,8 +70,8 @@ class FormInput extends Component {
         </FormGroup>
         <Row form className="text-center mb-3">
           <Col sm={12}>
-            <Button id="add" color="primary" className="mr-2" onClick={this.props.handleAddButton}>Add</Button>
-            <Button id="clearAll" color="primary" onClick={this.props.handleClearButton}>Clear All</Button>
+            <Button id="add" color="primary" className="mr-2" onClick={this.props.addProcess}>Add</Button>
+            <Button id="clearAll" color="primary" onClick={this.props.removeAllProcesses}>Clear All</Button>
           </Col>
         </Row>
       </Form>
@@ -82,11 +84,29 @@ FormInput.propTypes = {
   burnTime: PropTypes.string,
   name: PropTypes.string,
   errors: PropTypes.object,
-  handleAddButton: PropTypes.func,
-  handleChangeArriveTime: PropTypes.func,
-  handleChangeBurnTime: PropTypes.func,
-  handleChangeName: PropTypes.func,
-  handleClearButton: PropTypes.func
+  addProcess: PropTypes.func,
+  updateInputProcessName: PropTypes.func,
+  updateInputArriveTime: PropTypes.func,
+  updateInputBurnTime: PropTypes.func,
+  removeAllProcesses: PropTypes.func
 };
 
-export default FormInput;
+const mapStateToProps = state => ({
+  arriveTime: state.ui.arriveTime,
+  burnTime: state.ui.burnTime,
+  name: state.ui.name,
+  errors: state.ui.errors,
+});
+
+const mapDispatchToProps = {
+  addProcess,
+  removeAllProcesses,
+  updateInputProcessName,
+  updateInputArriveTime,
+  updateInputBurnTime,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormInput);

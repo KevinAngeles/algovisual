@@ -1,19 +1,9 @@
 // Include React
-import React, {Component} from 'react';
-import helper from './../utils/helper';
+import React, { Component } from 'react';
+import Helper from '../../utils/helper';
 import PropTypes from 'prop-types';
-
-function TableRow(props) {
-  return (
-    <tr>
-      <td>{props.row.name}</td>
-      <td>{props.row.burnTime}</td>
-      <td>{props.row.arriveTime}</td>
-      <td>{props.row.waitingTime}</td>
-      <td>{props.row.turnaroundTime}</td>
-    </tr>
-  );
-}
+import { connect } from 'react-redux';
+import TableOutputRow from '../../components/TableOutputRow';
 
 class TableOutputRows extends Component {
   constructor(props) {
@@ -38,14 +28,14 @@ class TableOutputRows extends Component {
         <tbody>
           {
             this.props.rows.map( item => {
-              return (<TableRow row={item} key={item.uniqueId}/>);
+              return (<TableOutputRow row={item} key={item.uniqueId}/>);
             })
           }
         </tbody>
         <tfoot>
           <tr>
             <th>Total</th>
-            <th>{helper.getTotalBurnTime(this.props.rows)}</th>
+            <th>{Helper.getTotalBurnTime(this.props.rows)}</th>
             <th colSpan={3}></th>
           </tr>
         </tfoot>
@@ -54,12 +44,23 @@ class TableOutputRows extends Component {
   }
 }
 
-TableRow.propTypes = {
-  row: PropTypes.object
-};
-
 TableOutputRows.propTypes = {
-  rows: PropTypes.array
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      burnTime: PropTypes.string.isRequired,
+      arriveTime: PropTypes.string.isRequired,
+      waitingTime: PropTypes.string.number,
+      turnaroundTime: PropTypes.string.number,
+    })
+  ),
 };
 
-export default TableOutputRows;
+const mapStateToProps = state => ({
+  rows: state.ui.tableOutput
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(TableOutputRows);

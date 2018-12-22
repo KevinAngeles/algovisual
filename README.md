@@ -41,6 +41,7 @@ npm run start
 
 * [D3.js](https://d3js.org/) - A JavaScript library for manipulating documents based on data.
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps.
 * [Reactstrap](https://reactstrap.github.io/) - Library to use React Bootstrap 4 components.
 * [Webpack](https://webpack.js.org/) -  Module bundler that generates static assets.
 

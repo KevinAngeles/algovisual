@@ -1,20 +1,11 @@
 // Include React
 import React, {Component} from 'react';
-import {Button} from 'reactstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { removeProcess } from '../../actions';
+import TableInputRow from '../../components/TableInputRow';
 
-import helper from './../utils/helper';
-
-function TableRow(props) {
-  return (
-    <tr>
-      <td>{props.row.name}</td>
-      <td>{props.row.arriveTime}</td>
-      <td>{props.row.burnTime}</td>
-      <td className="p-0"><Button id="clearAll" color="danger" data-key={props.row.idx} onClick={props.handleRemoveButton}>Remove</Button></td>
-    </tr>
-  );
-}
+import Helper from '../../utils/helper';
 
 class TableInputRows extends Component {
   constructor(props) {
@@ -39,15 +30,14 @@ class TableInputRows extends Component {
           {
             this.props.rows.map((item,index) => {
               item.idx = index;
-              return (<TableRow row={item} key={index}
-                handleRemoveButton={this.props.handleRemoveButton} />);
+              return (<TableInputRow row={item} key={index} removeProcess={this.props.removeProcess} />);
             })
           }
         </tbody>
         <tfoot>
           <tr>
             <th colSpan={2}>Total</th>
-            <th>{helper.getTotalBurnTime(this.props.rows)}</th>
+            <th>{Helper.getTotalBurnTime(this.props.rows)}</th>
             <th></th>
           </tr>
         </tfoot>
@@ -56,14 +46,20 @@ class TableInputRows extends Component {
   }
 }
 
-TableRow.propTypes = {
-  row: PropTypes.object,
-  handleRemoveButton: PropTypes.func
-};
-
 TableInputRows.propTypes = {
+  removeProcess: PropTypes.func,
   rows: PropTypes.array,
-  handleRemoveButton: PropTypes.func
 };
 
-export default TableInputRows;
+const mapStateToProps = state => ({
+  rows: state.ui.tableInput
+});
+
+const mapDispatchToProps = {
+  removeProcess
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TableInputRows);

@@ -1,0 +1,1 @@
+export const REMOVE_PROCESS = 'REMOVE_PROCESS';
