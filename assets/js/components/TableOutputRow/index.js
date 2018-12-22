@@ -23,10 +23,10 @@ class TableOutputRow extends Component {
 TableOutputRow.propTypes = {
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    burnTime: PropTypes.string.isRequired,
-    arriveTime: PropTypes.string.isRequired,
-    waitingTime: PropTypes.string.number,
-    turnaroundTime: PropTypes.string.number
+    burnTime: PropTypes.number.isRequired,
+    arriveTime: PropTypes.number.isRequired,
+    waitingTime: PropTypes.number.isRequired,
+    turnaroundTime: PropTypes.number.isRequired
   }),
 };
 

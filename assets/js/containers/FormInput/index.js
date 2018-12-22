@@ -25,9 +25,9 @@ class FormInput extends Component {
                   value={this.props.name}
                   onChange={ ev => this.props.updateInputProcessName(ev.target.value) }
                   placeholder="Name"
-                  invalid={this.props.errors.inputNameInvalid}
+                  invalid={this.props.errors.inputNameInvalid.status}
                 />
-                <FormFeedback>Name cannot be empty.</FormFeedback>
+                <FormFeedback>{this.props.errors.inputNameInvalid.msg}</FormFeedback>
               </Col>
             </Row>
           </Col>
@@ -43,9 +43,9 @@ class FormInput extends Component {
                   value={this.props.arriveTime}
                   onChange={ ev => this.props.updateInputArriveTime(ev.target.value) }
                   placeholder="0"
-                  invalid={this.props.errors.inputArriveTimeInvalid}
+                  invalid={this.props.errors.inputArriveTimeInvalid.status}
                 />
-                <FormFeedback>Arrive time cannot be empty.</FormFeedback>
+                <FormFeedback>{this.props.errors.inputArriveTimeInvalid.msg}</FormFeedback>
               </Col>
             </Row>
           </Col>
@@ -61,9 +61,9 @@ class FormInput extends Component {
                   value={this.props.burnTime}
                   onChange={ ev => this.props.updateInputBurnTime(ev.target.value) }
                   placeholder="0"
-                  invalid={this.props.errors.inputBurnTimeInvalid}
+                  invalid={this.props.errors.inputBurnTimeInvalid.status}
                 />
-                <FormFeedback>Burn time cannot be empty.</FormFeedback>
+                <FormFeedback>{this.props.errors.inputBurnTimeInvalid.msg}</FormFeedback>
               </Col>
             </Row>
           </Col>

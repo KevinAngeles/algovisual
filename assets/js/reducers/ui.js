@@ -1,7 +1,7 @@
 import { REMOVE_ALL_PROCESSES, ADD_PROCESS, REMOVE_PROCESS, TOGGLE_MODAL, TOGGLE_NAVBAR, UPDATE_INPUT_PROCESSNAME, UPDATE_INPUT_ARRIVETIME, UPDATE_INPUT_BURNTIME } from '../actions/types';
 // Helper Function
-import Algorithm from '../utils/algorithm';
-import Helper from '../utils/helper';
+import { getSJFOrderedElements } from '../utils/algorithm';
+import { filterNonNumericCharacters } from '../utils/helper';
 
 const totalWidth = 600;
 const totalHeight = 300;
@@ -23,9 +23,18 @@ const initialState = {
   lastUniqueId: 0,
   name: '',
   errors: {
-    inputNameInvalid: false,
-    inputArriveTimeInvalid: false,
-    inputBurnTimeInvalid: false,
+    inputNameInvalid: {
+      status: false,
+      msg: ''
+    },
+    inputArriveTimeInvalid: {
+      status: false,
+      msg: ''
+    },
+    inputBurnTimeInvalid: {
+      status: false,
+      msg: ''
+    },
   },
   graph: {
     margin: graphMargin,
@@ -48,10 +57,15 @@ const reducer = (state = initialState, action) => {
       const nameVal = action.value;
       // Update input name
       let newState = { ...state, name: nameVal };
-      // If name was empty before, and now there is at least one non-blank character
+      // If there is at least one non-blank character,
       // clear any previous name error
-      if (state.name.length === 0 && nameVal.length > 0) {
-        let inputNameError = { inputNameInvalid: false };
+      if (nameVal.trim().length > 0) {
+        let inputNameError = {
+          inputNameInvalid: {
+            status: false,
+            msg: ''
+          }
+        };
         let updatedErrors = Object.assign({},state.errors,inputNameError);
         newState['errors'] = updatedErrors;
       }
@@ -59,12 +73,17 @@ const reducer = (state = initialState, action) => {
     }
     case UPDATE_INPUT_ARRIVETIME: {
       const arriveVal = action.value;
-      const filteredInput = Helper.filterNonNumericCharacters(arriveVal);
+      const filteredInput = filterNonNumericCharacters(arriveVal);
       let newState = { ...state, arriveTime: filteredInput };
-      // If arriveTime was empty before, and now there is at least one character
+      // If arriveTime was empty before, and now there is at least one character,
       // clear any previous arriveTime error
       if (state.arriveTime.length === 0 && filteredInput.length > 0) {
-        let inputArriveTimeError = { inputArriveTimeInvalid: false };
+        let inputArriveTimeError = {
+          inputArriveTimeInvalid: {
+            status: false,
+            msg: ''
+          }
+        };
         let updatedErrors = { ...state.errors, ...inputArriveTimeError };
         newState['errors'] = updatedErrors;
       }
@@ -72,12 +91,17 @@ const reducer = (state = initialState, action) => {
     }
     case UPDATE_INPUT_BURNTIME: {
       const burnVal = action.value;
-      const filteredInput = Helper.filterNonNumericCharacters(burnVal);
+      const filteredInput = filterNonNumericCharacters(burnVal);
       let newState = { ...state, burnTime: filteredInput };
       // If burnTime was empty before, and now there is at least one character
       // clear any previous burnTime error
       if (state.burnTime.length === 0 && filteredInput.length > 0) {
-        let inputBurnTimeError = { inputBurnTimeInvalid: false };
+        let inputBurnTimeError = {
+          inputBurnTimeInvalid: {
+            status: false,
+            msg: ''
+          }
+        };
         let updatedErrors = { ...state.errors, ...inputBurnTimeError };
         newState['errors'] = updatedErrors;
       }
@@ -89,7 +113,7 @@ const reducer = (state = initialState, action) => {
     case REMOVE_PROCESS: {
       let updatedTableInput = [ ...state.tableInput ];
       updatedTableInput.splice(action.idx,1);
-      const updatedTableOutput = Algorithm.getSJFOrderedElements(updatedTableInput);
+      const updatedTableOutput = getSJFOrderedElements(updatedTableInput);
       return { ...state, tableInput: updatedTableInput, tableOutput: updatedTableOutput };
     }
     case ADD_PROCESS: {
@@ -98,18 +122,39 @@ const reducer = (state = initialState, action) => {
       let name = state.name;
       let errorExists = false;
       let errors = { ...state.errors };
-
-      if (name.trim().length === 0) {
+      // Validate non-empty input
+      if (name.length === 0) {
         errorExists = true;
-        errors.inputNameInvalid = true;
+        errors.inputNameInvalid = {
+          status: true,
+          msg: 'Name cannot be empty.'
+        };
       }
+      else if (name.trim().length === 0) {
+        // Validate at least one non-Whitespace character
+        errorExists = true;
+        errors.inputNameInvalid = {
+          status: true,
+          msg: 'Name must have at least one non-Whitespace character.'
+        };
+      }
+
+      // Validate at least one digit
       if (arriveTime.trim().length === 0) {
         errorExists = true;
-        errors.inputArriveTimeInvalid = true;
+        errors.inputArriveTimeInvalid = {
+          status: true,
+          msg: 'Arrive time cannot be empty.'
+        };
       }
+
+      // Validate at least one digit
       if (burnTime.trim().length === 0) {
         errorExists = true;
-        errors.inputBurnTimeInvalid = true;
+        errors.inputBurnTimeInvalid = {
+          status: true,
+          msg: 'Burn time cannot be empty.'
+        };
       }
 
       let newState = { ...state };
@@ -123,7 +168,7 @@ const reducer = (state = initialState, action) => {
         let newProcess = { arriveTime:parseInt(arriveTime), burnTime:parseInt(burnTime), name, uniqueId };
         let updatedTableInput = [ ...state.tableInput, newProcess ];
         newState.tableInput = updatedTableInput;
-        let updatedTableOutput = Algorithm.getSJFOrderedElements(updatedTableInput);
+        let updatedTableOutput = getSJFOrderedElements(updatedTableInput);
         newState.tableOutput = updatedTableOutput;
       }
       return newState;

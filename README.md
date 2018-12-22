@@ -1,4 +1,5 @@
 # Algovisual
+
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 This application allows users to visualize the output of an algorithm in bar charts.
@@ -7,7 +8,7 @@ This application allows users to visualize the output of an algorithm in bar cha
 
 [AlgoVisual Live Demo](https://kevinangeles.github.io/algovisual/)
 
-![AlgoVisual Live Demo](algovisual.gif)
+![AlgoVisual Demo](algovisual.gif "AlgoVisual Demo")
 
 ## Getting Started
 
@@ -21,10 +22,11 @@ You are required to have installed the following software:
 
 ### Installing
 
-**Install dependencies**
+#### Install dependencies
 
 Go to the root of the project and run the following code:
-```
+
+```JavaScript
 npm install
 ```
 
@@ -33,7 +35,7 @@ npm install
 **Start the server**
 Go to the root of the project and run the following code:
 
-```
+```JavaScript
 npm run start
 ```
 
@@ -52,7 +54,7 @@ npm run start
 
 ## Authors
 
-* **[Kevin Angeles](https://www.kevinangeles.com/)** - [algovisual](https://github.com/KevinAngeles/algovisual)
+* **[Kevin Angeles](https://www.kevinangeles.com/)** - [GitHub page](https://github.com/KevinAngeles/)
 
 ## License
 

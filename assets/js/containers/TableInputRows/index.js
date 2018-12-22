@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { removeProcess } from '../../actions';
 import TableInputRow from '../../components/TableInputRow';
 
-import Helper from '../../utils/helper';
+import { getTotalBurnTime } from '../../utils/helper';
 
 class TableInputRows extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class TableInputRows extends Component {
         <tfoot>
           <tr>
             <th colSpan={2}>Total</th>
-            <th>{Helper.getTotalBurnTime(this.props.rows)}</th>
+            <th>{getTotalBurnTime(this.props.rows)}</th>
             <th></th>
           </tr>
         </tfoot>

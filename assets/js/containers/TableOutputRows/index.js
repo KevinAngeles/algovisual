@@ -1,6 +1,6 @@
 // Include React
 import React, { Component } from 'react';
-import Helper from '../../utils/helper';
+import { getTotalBurnTime } from '../../utils/helper';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TableOutputRow from '../../components/TableOutputRow';
@@ -35,7 +35,7 @@ class TableOutputRows extends Component {
         <tfoot>
           <tr>
             <th>Total</th>
-            <th>{Helper.getTotalBurnTime(this.props.rows)}</th>
+            <th>{getTotalBurnTime(this.props.rows)}</th>
             <th colSpan={3}></th>
           </tr>
         </tfoot>
@@ -48,10 +48,10 @@ TableOutputRows.propTypes = {
   rows: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      burnTime: PropTypes.string.isRequired,
-      arriveTime: PropTypes.string.isRequired,
-      waitingTime: PropTypes.string.number,
-      turnaroundTime: PropTypes.string.number,
+      burnTime: PropTypes.number.isRequired,
+      arriveTime: PropTypes.number.isRequired,
+      waitingTime: PropTypes.number.isRequired,
+      turnaroundTime: PropTypes.number.isRequired,
     })
   ),
 };

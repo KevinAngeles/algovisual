@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // Helper Function
-import Graph from '../../utils/graph';
+import { drawYAxis, drawXAxis, drawBars } from '../../utils/graph';
 
 class BarChart extends Component {
   constructor(props) {
@@ -25,11 +25,11 @@ class BarChart extends Component {
 
       const isDataEmpty = (this.props.tableOutput.length === 0);
       // If there is no data, clear Y axis, otherwise, draw Y axis.
-      Graph.drawYAxis(isDataEmpty,barHeight,axisDomSelection);
+      drawYAxis(isDataEmpty,barHeight,axisDomSelection);
       // If there is no data, clear X axis, otherwise, draw X axis.
-      Graph.drawXAxis(this.props.tableOutput,graphWidth,barHeight,axisDomSelection);
+      drawXAxis(this.props.tableOutput,graphWidth,barHeight,axisDomSelection);
       // Draw bars
-      Graph.drawBars(this.props.tableOutput,graphWidth,graphHeight,barHeight,barsDomSelection);
+      drawBars(this.props.tableOutput,graphWidth,graphHeight,barHeight,barsDomSelection);
     }
   }
 
