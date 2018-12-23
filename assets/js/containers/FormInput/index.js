@@ -70,7 +70,7 @@ class FormInput extends Component {
         </FormGroup>
         <Row form className="text-center mb-3">
           <Col sm={12}>
-            <Button id="add" color="primary" className="mr-2" onClick={this.props.addProcess}>Add</Button>
+            <Button id="add" color="primary" className="mr-2" onClick={ () => this.props.addProcess(this.props.routeProps.match.params.id) }>Add</Button>
             <Button id="clearAll" color="primary" onClick={this.props.removeAllProcesses}>Clear All</Button>
           </Col>
         </Row>
@@ -84,6 +84,7 @@ FormInput.propTypes = {
   burnTime: PropTypes.string,
   name: PropTypes.string,
   errors: PropTypes.object,
+  routeProps: PropTypes.object,
   addProcess: PropTypes.func,
   updateInputProcessName: PropTypes.func,
   updateInputArriveTime: PropTypes.func,
@@ -95,7 +96,7 @@ const mapStateToProps = state => ({
   arriveTime: state.ui.arriveTime,
   burnTime: state.ui.burnTime,
   name: state.ui.name,
-  errors: state.ui.errors,
+  errors: state.ui.errors
 });
 
 const mapDispatchToProps = {

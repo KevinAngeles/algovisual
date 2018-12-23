@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Jumbotron } from 'reactstrap';
+import { HashRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updateSelectedAlgorithm } from '../actions';
 
 // Import sub-components
-import FormInput from '../containers/FormInput';
-import JumboTron from '../containers/JumboTron';
+import Algorithm from '../containers/Algorithm';
 import NavBar from '../containers/NavBar';
-import TableInputRows from '../containers/TableInputRows';
-import TableOutputRows from '../containers/TableOutputRows';
-import BarChart from '../containers/BarChart';
 
 class Main extends Component {
   constructor(props) {
@@ -16,39 +16,48 @@ class Main extends Component {
 
   render() {
     return (
-      <Container>
-        {/*<!-- Static navbar -->*/}
-        <NavBar/>
-
-        {/*<!-- Main component for a primary marketing message or call to action -->*/}
-        <JumboTron/>
-
-        <div className="container-form">
-          <div id="formContainer">
-            <h2>Instructions:</h2>
-            <ul>
-              <li>Fill the form with the name of the process, arrive time, burn time and click on {'Add.'}</li>
-              <li>Repeat the same steps for each process.</li>
-              <li>Every time the button {'Add'} is clicked, the result will be reordered in the table {'Output.'} Additionally, the bar charts below the tables will also be updated.</li>
-              <li>In order to remove a single process, click on the button {'Remove'} in the desired row.</li>
-              <li>In order to remove all the processes, click on the button {'Clear All'} above the table.</li>
-            </ul>
-            <FormInput/>
-          </div>
-          <Row className="tables no-gutters">
-            <TableInputRows/>
-            <TableOutputRows/>
-          </Row>
-        </div>
-        <div>
-          <div id="graph">
-            <BarChart/>
-          </div>
-        </div>
-      </Container>
+      <Router>
+        <Switch>
+          <Route exact={true} path="/" render={() => (
+            <Container>
+              <NavBar/>
+              <Jumbotron>
+                <h2>Scheduling Algorithms</h2>
+                <p>This is a web page created to explain and illustrate some common scheduling algorithms.</p>
+                <p>To begin, please click on one of the algorithms below.</p>
+                <ul id="algoLinks">
+                  {
+                    this.props.algorithms.map( algorithm => (
+                      <li key={algorithm.id}><NavLink to={`/algorithm/${algorithm.id}`} className={'btn btn-primary'} onClick={ () => this.props.updateSelectedAlgorithm(algorithm.id) }>{algorithm.name}</NavLink></li>
+                    ))
+                  }
+                </ul>
+              </Jumbotron>
+            </Container>
+          )}/>
+          <Route exact={true} path="/algorithm/:id" render={ routeProps => (
+            <Algorithm routeProps={{...routeProps}}/>
+          )}/>
+        </Switch>
+      </Router>
     );
   }
 }
 
-// Export the component back for use in other files
-export default Main;
+Main.propTypes = {
+  algorithms: PropTypes.array,
+  updateSelectedAlgorithm: PropTypes.func,
+};
+
+const mapStateToProps = state => ({
+  algorithms: state.algorithm.scheduling,
+});
+
+const mapDispatchToProps = {
+  updateSelectedAlgorithm
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

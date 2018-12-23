@@ -45,6 +45,50 @@ export const bubbleSortMultiple = (arr, keys) => {
   }
   return arr;
 };
+
+/**
+ * Summary. Sort an array using the  First In First Out (FIFO) Non-preemptive algorithm.
+ *
+ * Description. First, this function sorts an array of processes in ascending order by
+ * arriveTime using the quickSort algorithm. Then, it uses the sorted array to calculate
+ * waitingTime and turnaraoundTime for each process. Finally, it returns the sorted array
+ * including waitingTime and TurnaroundTime.
+ *
+ * @param {Array}   proc               Array to be sorted. Example: [{name:'first',arriveTime:1,burnTime:2}]
+ * @param {string}  arriveTime         string used for arriveTime in the input Array.
+ * @param {string}  burnTime           string used for burnTime in the input Array.
+ * @param {string}  waitingTime        string to be used for waitingTime in the output Array.
+ * @param {string}  turnaroundTime     string to be used for turnaroundTime in the output Array.
+ *
+ * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2,waitingTime:0,turnAroundTime:2}]
+ */
+export const getFIFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime = 'burnTime', waitingTime = 'waitingTime', turnaroundTime = 'turnaroundTime') => {
+  let sjfArr = [];
+
+  // Sort array by arriveTime in ascending order
+  let processes = [...proc].sort( (first, second) => (first[arriveTime] - second[arriveTime]) );
+
+  if( processes.length > 0 )
+  {
+    let firstProcess = processes[0];
+    firstProcess[waitingTime] = 0; // because the first process does not wait
+    firstProcess[turnaroundTime] = firstProcess[waitingTime] + firstProcess[burnTime];
+    sjfArr.push(firstProcess);
+
+    for ( let i = 1; i < processes.length; i++ )
+    {
+      let currentProcess = processes[i];
+      let previousArriveTime = sjfArr[i-1][arriveTime];
+      let previousTurnaroundTime = sjfArr[i-1][turnaroundTime];
+      let previousTotalTime = previousArriveTime + previousTurnaroundTime;
+      currentProcess[waitingTime] = (currentProcess[arriveTime] > previousTotalTime) ? 0:(previousTotalTime - currentProcess[arriveTime]);
+      currentProcess[turnaroundTime] = currentProcess[waitingTime] + currentProcess[burnTime];
+      sjfArr.push(currentProcess);
+    }
+  }
+  return sjfArr;
+};
+
 /**
  * Summary. Sort an array using the Shortest Job First Non-preemptive algorithm.
  *
@@ -64,7 +108,7 @@ export const bubbleSortMultiple = (arr, keys) => {
 export const getSJFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime = 'burnTime', waitingTime = 'waitingTime', turnaroundTime = 'turnaroundTime') => {
   let sjfArr = [];
   // Sort array by arriveTime, and burnTime in ascending order
-  let processes = proc.sort( (first, second) => {
+  let processes = [...proc].sort( (first, second) => {
     // If (first[arriveTime] - second[arriveTime]) returns 0, then, it continues to (first[burnTime] - second[burnTime])
     // however, if a non-zero value is returned in the first comparison, it won't continue to the second one
     return (first[arriveTime] - second[arriveTime]) || (first[burnTime] - second[burnTime]);
@@ -89,4 +133,26 @@ export const getSJFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime 
     }
   }
   return sjfArr;
+};
+
+/**
+ * Summary. Get an algorithm.
+ *
+ * Description. This function gets the id of an algorithm and returns a function
+ * that sorts processes based on the selected algorithm.
+ *
+ * @param {String}   algorithm          string used to select Algorithm.
+ *
+ * @return {Function}  getOrderedElements
+ */
+export const getAlgorithm = algorithm => {
+  const algorithmId = algorithm.toLowerCase();
+  switch (algorithmId) {
+    case 'fifo':
+      return getFIFOrderedElements;
+    case 'sjf':
+      return getSJFOrderedElements;
+    default:
+      return getFIFOrderedElements;
+  }
 };

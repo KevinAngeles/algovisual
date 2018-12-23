@@ -1,7 +1,8 @@
 import { ADD_PROCESS, REMOVE_ALL_PROCESSES, TOGGLE_MODAL, TOGGLE_NAVBAR, UPDATE_INPUT_PROCESSNAME, UPDATE_INPUT_ARRIVETIME, UPDATE_INPUT_BURNTIME } from './types';
 
-export const addProcess = () => ({
-  type: ADD_PROCESS
+export const addProcess = algorithmId => ({
+  type: ADD_PROCESS,
+  algorithmId
 });
 
 export const removeAllProcesses = () => ({

@@ -1,6 +1,6 @@
-import { SELECT_ALGORITHM } from './types';
+import { UPDATE_SELECTED_ALGORITHM } from './types';
 
-export const selectAlgorithm = algorithm => ({
-  type: SELECT_ALGORITHM,
+export const updateSelectedAlgorithm = algorithm => ({
+  type: UPDATE_SELECTED_ALGORITHM,
   algorithm
 });

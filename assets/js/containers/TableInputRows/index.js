@@ -30,7 +30,7 @@ class TableInputRows extends Component {
           {
             this.props.rows.map((item,index) => {
               item.idx = index;
-              return (<TableInputRow row={item} key={index} removeProcess={this.props.removeProcess} />);
+              return (<TableInputRow row={item} key={index} removeProcess={this.props.removeProcess} routeProps={this.props.routeProps}/>);
             })
           }
         </tbody>
@@ -47,12 +47,14 @@ class TableInputRows extends Component {
 }
 
 TableInputRows.propTypes = {
+  routeProps: PropTypes.object,
   removeProcess: PropTypes.func,
   rows: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  rows: state.ui.tableInput
+  rows: state.ui.tableInput,
+  selectedAlgorithmId: state.algorithm.selected.id,
 });
 
 const mapDispatchToProps = {

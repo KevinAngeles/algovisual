@@ -3,6 +3,11 @@
 a {
   color: red;
 }
+html {
+  &, body, .container {
+    height: 100%;
+  }
+}
 
 body {
   background-image: linear-gradient(to right, #562305 0%, #aa4400 25%, #a44015 40%, #a44015 60%, #562305 100%);
@@ -256,6 +261,14 @@ nav {
 
 .tables {
   margin-top: 10px;
+}
+
+#algoLinks {
+  list-style: none;
+  a {
+    width: 230px;
+    margin-bottom: 2px;
+  }
 }
 
 #formContainer {

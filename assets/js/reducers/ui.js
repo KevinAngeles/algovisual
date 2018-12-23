@@ -1,6 +1,6 @@
 import { REMOVE_ALL_PROCESSES, ADD_PROCESS, REMOVE_PROCESS, TOGGLE_MODAL, TOGGLE_NAVBAR, UPDATE_INPUT_PROCESSNAME, UPDATE_INPUT_ARRIVETIME, UPDATE_INPUT_BURNTIME } from '../actions/types';
 // Helper Function
-import { getSJFOrderedElements } from '../utils/algorithm';
+import { getAlgorithm } from '../utils/algorithm';
 import { filterNonNumericCharacters } from '../utils/helper';
 
 const totalWidth = 600;
@@ -111,12 +111,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, tableInput: [], tableOutput: [] };
     }
     case REMOVE_PROCESS: {
+      let algorithmId = action.algorithmId;
       let updatedTableInput = [ ...state.tableInput ];
       updatedTableInput.splice(action.idx,1);
-      const updatedTableOutput = getSJFOrderedElements(updatedTableInput);
+      const updatedTableOutput = getAlgorithm(algorithmId)(updatedTableInput);
       return { ...state, tableInput: updatedTableInput, tableOutput: updatedTableOutput };
     }
     case ADD_PROCESS: {
+      let algorithmId = action.algorithmId;
       let arriveTime = state.arriveTime;
       let burnTime = state.burnTime;
       let name = state.name;
@@ -168,7 +170,7 @@ const reducer = (state = initialState, action) => {
         let newProcess = { arriveTime:parseInt(arriveTime), burnTime:parseInt(burnTime), name, uniqueId };
         let updatedTableInput = [ ...state.tableInput, newProcess ];
         newState.tableInput = updatedTableInput;
-        let updatedTableOutput = getSJFOrderedElements(updatedTableInput);
+        let updatedTableOutput = getAlgorithm(algorithmId)(updatedTableInput);
         newState.tableOutput = updatedTableOutput;
       }
       return newState;

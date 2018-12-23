@@ -1,10 +1,9 @@
 // Include React
 import React, {Component} from 'react';
 import {Button,Jumbotron} from 'reactstrap';
-import { Route } from 'react-router-dom';
 import ModalDescription from '../../components/ModalDescription';
 import { connect } from 'react-redux';
-import { toggleModal } from '../../actions';
+import { toggleModal, updateSelectedAlgorithm } from '../../actions';
 import PropTypes from 'prop-types';
 
 class JumboTron extends Component {
@@ -15,10 +14,8 @@ class JumboTron extends Component {
   render() {
     return(
       <Jumbotron>
-        <Route path="/" render={() => (
-          <p>This is a web page created to explain and illustrate some common algorithms.</p>
-        )}/>
-        <h2>SJF Algorithm</h2>
+        <h2>{this.props.title}</h2>
+        <p>This is a non preemptive scheduling algorithm. To visualize the output, follow the instructions below.</p>
         <Button color='primary' size='lg' onClick={this.props.toggleModal}>Go to explanation »</Button>
         <ModalDescription
           toggle={this.props.toggleModal}
@@ -32,7 +29,9 @@ class JumboTron extends Component {
 }
 
 JumboTron.propTypes = {
+  algorithmName: PropTypes.string,
   toggleModal: PropTypes.func,
+  updateSelectedAlgorithm: PropTypes.func,
   modal: PropTypes.bool,
   title: PropTypes.string,
   description: PropTypes.string,
@@ -45,7 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  toggleModal
+  toggleModal,
+  updateSelectedAlgorithm
 };
 
 export default connect(
