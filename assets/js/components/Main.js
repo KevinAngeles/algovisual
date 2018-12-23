@@ -7,7 +7,7 @@ import { updateSelectedAlgorithm } from '../actions';
 
 // Import sub-components
 import Algorithm from '../containers/Algorithm';
-import NavBar from '../containers/NavBar';
+import NavBar from '../components/NavBar';
 
 class Main extends Component {
   constructor(props) {

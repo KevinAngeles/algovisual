@@ -1,9 +1,9 @@
 // Include React
 import React, {Component} from 'react';
 import {Button,Jumbotron} from 'reactstrap';
-import ModalDescription from '../../components/ModalDescription';
+import ModalDescription from '../../../components/ModalDescription';
 import { connect } from 'react-redux';
-import { toggleModal, updateSelectedAlgorithm } from '../../actions';
+import { toggleModal, updateSelectedAlgorithm } from '../../../actions';
 import PropTypes from 'prop-types';
 
 class JumboTron extends Component {

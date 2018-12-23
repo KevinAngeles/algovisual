@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // Helper Function
-import { drawYAxis, drawXAxis, drawBars } from '../../utils/graph';
+import { drawYAxis, drawXAxis, drawBars } from '../../../utils/graph';
 
 class BarChart extends Component {
   constructor(props) {

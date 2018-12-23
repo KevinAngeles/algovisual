@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateSelectedAlgorithm, removeAllProcesses } from '../../actions';
+import { updateSelectedAlgorithm, removeAllProcesses, resetFormInputs } from '../../actions';
 
 // Import sub-components
-import FormInput from '../FormInput';
-import JumboTron from '../JumboTron';
-import NavBar from '../NavBar';
-import TableInputRows from '../TableInputRows';
-import TableOutputRows from '../TableOutputRows';
-import BarChart from '../BarChart';
+import FormInput from './FormInput';
+import JumboTron from './JumboTron';
+import NavBar from '../../components/NavBar';
+import TableInputRows from './TableInputRows';
+import TableOutputRows from './TableOutputRows';
+import BarChart from './BarChart';
 
 class Algorithm extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class Algorithm extends Component {
   componentWillMount() {
     this.props.updateSelectedAlgorithm(this.props.routeProps.match.params.id);
     this.props.removeAllProcesses();
+    this.props.resetFormInputs();
   }
 
   render() {
@@ -58,6 +59,7 @@ class Algorithm extends Component {
 Algorithm.propTypes = {
   algorithms: PropTypes.array,
   updateSelectedAlgorithm: PropTypes.func,
+  resetFormInputs: PropTypes.func,
   routeProps: PropTypes.object,
   removeAllProcesses: PropTypes.func,
 };
@@ -68,7 +70,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateSelectedAlgorithm,
-  removeAllProcesses
+  removeAllProcesses,
+  resetFormInputs
 };
 
 export default connect(

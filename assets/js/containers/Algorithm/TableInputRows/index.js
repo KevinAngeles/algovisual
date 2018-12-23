@@ -2,10 +2,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeProcess } from '../../actions';
-import TableInputRow from '../../components/TableInputRow';
+import { removeProcess } from '../../../actions';
+import TableInputRow from '../../../components/TableInputRow';
 
-import { getTotalBurnTime } from '../../utils/helper';
+import { getTotalBurnTime } from '../../../utils/helper';
 
 class TableInputRows extends Component {
   constructor(props) {

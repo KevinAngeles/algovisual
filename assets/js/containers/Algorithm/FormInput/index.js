@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button, Col, Form, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addProcess, removeAllProcesses, updateInputProcessName, updateInputArriveTime, updateInputBurnTime } from '../../actions';
+import { addProcess, removeAllProcesses, updateInputProcessName, updateInputArriveTime, updateInputBurnTime } from '../../../actions';
 
 class FormInput extends Component {
   constructor(props) {

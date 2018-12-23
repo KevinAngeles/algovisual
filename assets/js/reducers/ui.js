@@ -1,4 +1,4 @@
-import { REMOVE_ALL_PROCESSES, ADD_PROCESS, REMOVE_PROCESS, TOGGLE_MODAL, TOGGLE_NAVBAR, UPDATE_INPUT_PROCESSNAME, UPDATE_INPUT_ARRIVETIME, UPDATE_INPUT_BURNTIME } from '../actions/types';
+import { REMOVE_ALL_PROCESSES, ADD_PROCESS, REMOVE_PROCESS, RESET_FORM_INPUTS, TOGGLE_MODAL, TOGGLE_NAVBAR, UPDATE_INPUT_PROCESSNAME, UPDATE_INPUT_ARRIVETIME, UPDATE_INPUT_BURNTIME } from '../actions/types';
 // Helper Function
 import { getAlgorithm } from '../utils/algorithm';
 import { filterNonNumericCharacters } from '../utils/helper';
@@ -107,8 +107,16 @@ const reducer = (state = initialState, action) => {
       }
       return newState;
     }
+    case RESET_FORM_INPUTS: {
+      return {
+        ...state,
+        name: '',
+        arriveTime: '',
+        burnTime: ''
+      };
+    }
     case REMOVE_ALL_PROCESSES: {
-      return { ...state, tableInput: [], tableOutput: [] };
+      return { ...state, tableInput: [], tableOutput: [], lastUniqueId: 0, };
     }
     case REMOVE_PROCESS: {
       let algorithmId = action.algorithmId;

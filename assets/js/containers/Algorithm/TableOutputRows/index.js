@@ -1,9 +1,9 @@
 // Include React
 import React, { Component } from 'react';
-import { getTotalBurnTime } from '../../utils/helper';
+import { getTotalBurnTime } from '../../../utils/helper';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TableOutputRow from '../../components/TableOutputRow';
+import TableOutputRow from '../../../components/TableOutputRow';
 
 class TableOutputRows extends Component {
   constructor(props) {
