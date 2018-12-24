@@ -37,7 +37,7 @@ class BarChart extends Component {
     let svgWidth = this.props.width + this.props.margin.left + this.props.margin.right;
     let svgHeight = this.props.height + this.props.margin.top + this.props.margin.bottom;
     return(
-      <svg ref={this.chartRef} shapeRendering="geometricPrecision" width={svgWidth} height={svgHeight}>
+      <svg ref={this.chartRef} shapeRendering="geometricPrecision" width="100%" height="100%" viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{maxWith:`${svgWidth}px`, maxHeight:`${svgHeight}px`}}>
         <g transform="translate(30,60)">
           <g id="axis"></g>
           <g id="bars"></g>
