@@ -16,7 +16,7 @@ class JumboTron extends Component {
       <Jumbotron>
         <h2>{this.props.title}</h2>
         <p>This is a non preemptive scheduling algorithm. To visualize the output, follow the instructions below.</p>
-        <Button color='primary' size='lg' onClick={this.props.toggleModal}>Go to explanation »</Button>
+        <Button color='primary' size='lg' onClick={this.props.toggleModal}>Show explanation »</Button>
         <ModalDescription
           toggle={this.props.toggleModal}
           modal={this.props.modal}

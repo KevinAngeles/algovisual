@@ -29,8 +29,7 @@ class Main extends Component {
                 </figure>
                 <p>Scheduling algorithms can be classified as preemptive and Non preemptive.</p>
                 <h3>Non Preemptive Algorithms</h3>
-                <p>A scheduling algorithm is non preemptive if it does not wait for a given process to finish before moving on to the next process.</p>
-                <p>To begin, please click on one of the algorithms below.</p>
+                <p>A scheduling algorithm is non preemptive if it does not wait for a given process to finish before moving on to the next process. To begin, please click on one of the algorithms below.</p>
                 <ul id="algoLinks">
                   {
                     this.props.algorithms.map( algorithm => (

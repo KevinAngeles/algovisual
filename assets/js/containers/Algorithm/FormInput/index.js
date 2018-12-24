@@ -71,7 +71,7 @@ class FormInput extends Component {
         <Row form className="text-center mb-3">
           <Col sm={12}>
             <Button id="add" color="primary" className="mr-2" onClick={ () => this.props.addProcess(this.props.routeProps.match.params.id) }>Add</Button>
-            <Button id="clearAll" color="primary" onClick={this.props.removeAllProcesses}>Clear All</Button>
+            <Button id="clearAll" color="primary" onClick={this.props.removeAllProcesses}>Clear Processes</Button>
           </Col>
         </Row>
       </Form>

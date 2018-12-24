@@ -41,7 +41,7 @@ class Algorithm extends Component {
               <li>Repeat the same steps for each process.</li>
               <li>Every time the button {'Add'} is clicked, the result will be reordered in the table {'Output.'} Additionally, the bar charts below the tables will also be updated.</li>
               <li>In order to remove a single process, click on the button {'Remove'} in the desired row.</li>
-              <li>In order to remove all the processes, click on the button {'Clear All'} above the table.</li>
+              <li>In order to remove all the processes, click on the button {'Clear Processes'} located in this form.</li>
             </ul>
             <FormInput routeProps={this.props.routeProps}/>
           </div>
