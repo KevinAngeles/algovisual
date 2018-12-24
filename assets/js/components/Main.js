@@ -23,7 +23,13 @@ class Main extends Component {
               <NavBar/>
               <Jumbotron>
                 <h2>Scheduling Algorithms</h2>
-                <p>This is a web page created to explain and illustrate some common scheduling algorithms.</p>
+                <p>Welcome to AlgoVisual! This is a web page created to explain and illustrate some common scheduling algorithms.</p>
+                <figure>
+                  <img src={`images/processChart.png`} alt={`Example of process scheduling`}/>
+                </figure>
+                <p>Scheduling algorithms can be classified as preemptive and Non preemptive.</p>
+                <h3>Non Preemptive Algorithms</h3>
+                <p>A scheduling algorithm is non preemptive if it does not wait for a given process to finish before moving on to the next process.</p>
                 <p>To begin, please click on one of the algorithms below.</p>
                 <ul id="algoLinks">
                   {

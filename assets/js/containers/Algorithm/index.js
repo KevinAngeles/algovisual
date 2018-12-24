@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { updateSelectedAlgorithm, removeAllProcesses, resetFormInputs } from '../../actions';
 
@@ -27,6 +28,10 @@ class Algorithm extends Component {
     return (
       <Container>
         <NavBar/>
+        <Breadcrumb>
+          <BreadcrumbItem><Link to={`/`}>Home</Link></BreadcrumbItem>
+          <BreadcrumbItem active>{this.props.selectedAlgorithmName}</BreadcrumbItem>
+        </Breadcrumb>
         <JumboTron/>
         <div className="container-form">
           <div id="formContainer">
@@ -55,17 +60,18 @@ class Algorithm extends Component {
   }
 }
 
-
 Algorithm.propTypes = {
   algorithms: PropTypes.array,
   updateSelectedAlgorithm: PropTypes.func,
   resetFormInputs: PropTypes.func,
   routeProps: PropTypes.object,
   removeAllProcesses: PropTypes.func,
+  selectedAlgorithmName: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   algorithms: state.algorithm.scheduling,
+  selectedAlgorithmName: state.algorithm.selected.name
 });
 
 const mapDispatchToProps = {

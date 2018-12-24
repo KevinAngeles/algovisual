@@ -93,21 +93,6 @@ table {
   }
 }
 
-nav {
-  background-color: #BF5700 !important;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 4px;
-  a {
-    border: 1px solid transparent;
-    border-bottom: 0 none;
-    color: white !important;
-    display: block;
-    font-size: 15px;
-    height: 29px;
-    padding: 6px 17px 5px;
-    text-decoration: none;
-  }
-}
-
 .axis {
   font: 10px sans-serif;
 }
@@ -119,8 +104,15 @@ nav {
   shape-rendering: crispEdges;
 }
 
-.axis.x>.tick{
+.axis.x>.tick {
   stroke: #a44015;
+}
+
+.breadcrumb {
+  margin-bottom: 0;
+  a {
+    color: #562305;
+  }
 }
 
 .btn {
@@ -207,7 +199,23 @@ nav {
 .jumbotron {
   padding-top: 15px !important;
   padding-bottom: 30px !important;
+  margin-top: 0;
   margin-bottom: 0 !important;
+  text-align: center;
+  figure {
+    img {
+      max-width: 100%;
+    }
+  }
+  h2 {
+    margin-top: 0;
+  }
+  h3 {
+    font-size: 1.35rem;
+  }
+  p {
+    text-align: left;
+  }
 }
 
 .navbar {
@@ -242,6 +250,19 @@ nav {
   }
 }
 
+.navbar {
+  background-color: #BF5700 !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 4px;
+  .navbar-brand {
+    // border: 1px solid transparent;
+    // border-bottom: 0 none;
+    color: white !important;
+    // display: block;
+    // padding: 6px 17px 5px;
+    // text-decoration: none;
+  }
+}
+
 .navbar-brand {
   height: 100%;
 }
@@ -265,6 +286,7 @@ nav {
 
 #algoLinks {
   list-style: none;
+  padding: 0;
   a {
     width: 230px;
     margin-bottom: 2px;
