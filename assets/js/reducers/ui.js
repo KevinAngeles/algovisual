@@ -120,8 +120,7 @@ const reducer = (state = initialState, action) => {
     }
     case REMOVE_PROCESS: {
       let algorithmId = action.algorithmId;
-      let updatedTableInput = [ ...state.tableInput ];
-      updatedTableInput.splice(action.idx,1);
+      let updatedTableInput = state.tableInput.filter( process => (process.uniqueId !== action.uniqueId));
       const updatedTableOutput = getAlgorithm(algorithmId)(updatedTableInput);
       return { ...state, tableInput: updatedTableInput, tableOutput: updatedTableOutput };
     }

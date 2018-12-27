@@ -63,27 +63,25 @@ export const bubbleSortMultiple = (arr, keys) => {
  * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2,waitingTime:0,turnAroundTime:2}]
  */
 export const getFIFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime = 'burnTime', waitingTime = 'waitingTime', turnaroundTime = 'turnaroundTime') => {
-  let sjfArr = [];
+  let sjfArr = JSON.parse(JSON.stringify(proc));
 
   // Sort array by arriveTime in ascending order
-  let processes = [...proc].sort( (first, second) => (first[arriveTime] - second[arriveTime]) );
+  sjfArr.sort( (first, second) => (first[arriveTime] - second[arriveTime]) );
 
-  if( processes.length > 0 )
+  if( sjfArr.length > 0 )
   {
-    let firstProcess = processes[0];
+    let firstProcess = sjfArr[0];
     firstProcess[waitingTime] = 0; // because the first process does not wait
     firstProcess[turnaroundTime] = firstProcess[waitingTime] + firstProcess[burnTime];
-    sjfArr.push(firstProcess);
 
-    for ( let i = 1; i < processes.length; i++ )
+    for ( let i = 1; i < sjfArr.length; i++ )
     {
-      let currentProcess = processes[i];
+      let currentProcess = sjfArr[i];
       let previousArriveTime = sjfArr[i-1][arriveTime];
       let previousTurnaroundTime = sjfArr[i-1][turnaroundTime];
       let previousTotalTime = previousArriveTime + previousTurnaroundTime;
       currentProcess[waitingTime] = (currentProcess[arriveTime] > previousTotalTime) ? 0:(previousTotalTime - currentProcess[arriveTime]);
       currentProcess[turnaroundTime] = currentProcess[waitingTime] + currentProcess[burnTime];
-      sjfArr.push(currentProcess);
     }
   }
   return sjfArr;
@@ -106,30 +104,28 @@ export const getFIFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime 
  * @return {Array}  Example: [{name:'first',arriveTime:1,burnTime:2,waitingTime:0,turnAroundTime:2}]
  */
 export const getSJFOrderedElements = (proc, arriveTime = 'arriveTime', burnTime = 'burnTime', waitingTime = 'waitingTime', turnaroundTime = 'turnaroundTime') => {
-  let sjfArr = [];
+  let sjfArr = JSON.parse(JSON.stringify(proc));
   // Sort array by arriveTime, and burnTime in ascending order
-  let processes = [...proc].sort( (first, second) => {
+  sjfArr.sort( (first, second) => {
     // If (first[arriveTime] - second[arriveTime]) returns 0, then, it continues to (first[burnTime] - second[burnTime])
     // however, if a non-zero value is returned in the first comparison, it won't continue to the second one
     return (first[arriveTime] - second[arriveTime]) || (first[burnTime] - second[burnTime]);
   });
 
-  if( processes.length > 0 )
+  if( sjfArr.length > 0 )
   {
-    let firstProcess = processes[0];
+    let firstProcess = sjfArr[0];
     firstProcess[waitingTime] = 0; // because the first process does not wait
     firstProcess[turnaroundTime] = firstProcess[waitingTime] + firstProcess[burnTime];
-    sjfArr.push(firstProcess);
 
-    for ( let i = 1; i < processes.length; i++ )
+    for ( let i = 1; i < sjfArr.length; i++ )
     {
-      let currentProcess = processes[i];
+      let currentProcess = sjfArr[i];
       let previousArriveTime = sjfArr[i-1][arriveTime];
       let previousTurnaroundTime = sjfArr[i-1][turnaroundTime];
       let previousTotalTime = previousArriveTime + previousTurnaroundTime;
       currentProcess[waitingTime] = (currentProcess[arriveTime] > previousTotalTime) ? 0:(previousTotalTime - currentProcess[arriveTime]);
       currentProcess[turnaroundTime] = currentProcess[waitingTime] + currentProcess[burnTime];
-      sjfArr.push(currentProcess);
     }
   }
   return sjfArr;

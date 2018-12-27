@@ -1,6 +1,6 @@
 import { UPDATE_SELECTED_ALGORITHM } from '../actions/types';
 
-const initialState = {
+export const initialState = {
   selected: {
     id: 'fifo',
     name: 'First In First Out (FIFO)',

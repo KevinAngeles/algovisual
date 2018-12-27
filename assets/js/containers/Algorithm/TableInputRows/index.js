@@ -28,9 +28,8 @@ class TableInputRows extends Component {
         </thead>
         <tbody>
           {
-            this.props.rows.map((item,index) => {
-              item.idx = index;
-              return (<TableInputRow row={item} key={index} removeProcess={this.props.removeProcess} routeProps={this.props.routeProps}/>);
+            this.props.rows.map( process => {
+              return (<TableInputRow row={process} key={process.uniqueId} removeProcess={this.props.removeProcess} routeProps={this.props.routeProps}/>);
             })
           }
         </tbody>
