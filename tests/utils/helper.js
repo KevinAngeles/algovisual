@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { filterNonNumericCharacters } from '../assets/js/utils/helper';
+import { filterNonNumericCharacters } from '../../assets/js/utils/helper';
 
 describe('Validate Helper', () => {
   describe('filterNonNumericCharacters', () => {
