@@ -17,25 +17,27 @@ const barOuterPad = 0.2;
 const graphWidth = (totalWidth - graphMargin.right);
 const graphHeight = (totalHeight - graphMargin.top);
 
+const ALL_ERRORS_OFF = {
+  inputNameInvalid: {
+    status: false,
+    msg: ''
+  },
+  inputArriveTimeInvalid: {
+    status: false,
+    msg: ''
+  },
+  inputBurnTimeInvalid: {
+    status: false,
+    msg: ''
+  },
+};
+
 const initialState = {
   arriveTime: '',
   burnTime: '',
   lastUniqueId: 0,
   name: '',
-  errors: {
-    inputNameInvalid: {
-      status: false,
-      msg: ''
-    },
-    inputArriveTimeInvalid: {
-      status: false,
-      msg: ''
-    },
-    inputBurnTimeInvalid: {
-      status: false,
-      msg: ''
-    },
-  },
+  errors: JSON.parse(JSON.stringify(ALL_ERRORS_OFF)),
   graph: {
     margin: graphMargin,
     width: graphWidth,
@@ -112,7 +114,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         name: '',
         arriveTime: '',
-        burnTime: ''
+        burnTime: '',
+        errors: ALL_ERRORS_OFF
       };
     }
     case REMOVE_ALL_PROCESSES: {
